@@ -1,19 +1,21 @@
-# 🧑‍💻 MVP & Production Yazılım Ekibi ve Maliyet Analizi
+# MVP & Production Yazılım Ekibi ve Maliyet Analizi
 
-## 👥 Ekip Rolleri
+## Ekip Rolleri
 
-| Rol                  | Sorumluluklar |
-|----------------------|---------------|
+| Rol                     | Sorumluluklar |
+|--------------------------|---------------|
+| **Software Architect**  | Yazılım mimarisinin tasarımı, teknoloji seçimi, kod standartları ve genel teknik liderlik |
 | **Senior Backend Developer** | MQTT üzerinden gelen telemetri verilerinin işlenmesi, veri tabanı tasarımı, API geliştirimi |
-| **Frontend Developer**       | Web panelin geliştirilmesi, harita takibi, komut gönderimi arayüzü |
+| **Frontend Developer**        | Web panelin geliştirilmesi, harita takibi, komut gönderimi arayüzü |
 | **DevOps / Infrastructure Engineer** | Docker, Redis, Mosquitto, veritabanı kurulumu ve CI/CD entegrasyonu |
-| **UI/UX Designer**           | Kullanıcı arayüzü tasarımı, kullanıcı akışı oluşturma, wireframe/mockup/prototipleme |
+| **UI/UX Designer**            | Kullanıcı arayüzü tasarımı, kullanıcı akışı oluşturma, wireframe/mockup/prototipleme |
+| **QA Specialist (Test Uzmanı)** | Otomasyon ve manuel test senaryoları, sistem testi, hata takibi ve kalite güvence süreçleri |
 
 ---
 
-## ⏳ Tahmini Adam-Saat ve Maliyet
+## Tahmini Adam-Saat ve Maliyet
 
-### 🔹 MVP Aşaması
+### MVP Aşaması
 
 | Rol                  | Adam Saat | Saatlik Ücret (USD) | Toplam (USD) |
 |----------------------|-----------|---------------------|--------------|
@@ -26,7 +28,7 @@
 
 ---
 
-### 🔹 Production Aşaması
+### Production Aşaması
 
 | Rol                  | Adam Saat | Saatlik Ücret (USD) | Toplam (USD) |
 |----------------------|-----------|---------------------|--------------|
@@ -40,7 +42,7 @@
 
 ---
 
-## 🧮 Genel Toplam
+## Genel Toplam
 
 | Aşama       | Adam Saat | Toplam Maliyet (USD) |
 |-------------|------------|----------------------|
@@ -50,6 +52,6 @@
 
 ---
 
-## 📌 Notlar
+## Notlar
 
 - Maliyetler tahmini olup freelance/kontrat bazlı çalışanlar için belirlenmiştir.
