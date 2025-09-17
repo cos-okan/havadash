@@ -38,18 +38,7 @@ Bu proje, teslimat yapabilen drone’ların izlenmesini, komutlarla yönetilmesi
 - [ ] Uçuş kayıtlarının listelenmesi
 - [ ] Uçuş detaylarının görselleştirilmesi (başlangıç, bitiş, rota)
 
-### 5. Kullanıcı Sistemi & Yetkilendirme
-
-- [ ] JWT tabanlı kullanıcı doğrulama
-- [ ] Admin ve Operator rolleri
-- [ ] Giriş ekranı ve session yönetimi
-
-### 6. Uyarı Sistemi (Alerting)
-
-- [ ] Kritik durumlar için uyarılar (örneğin batarya < %20)
-- [ ] Uyarıların kullanıcı arayüzünde gösterimi
-
-### 7. Altyapı & DevOps
+### 5. Altyapı & DevOps
 
 - [ ] Docker Compose ile servis orkestrasyonu
 - [ ] PostgreSQL kurulumu ve konfigürasyonu
@@ -62,7 +51,7 @@ Bu proje, teslimat yapabilen drone’ların izlenmesini, komutlarla yönetilmesi
 | Katman | Teknoloji |
 |--------|-----------|
 | Frontend | React.js/Next.js, Leaflet.js |
-| Backend | FastAPI / Express.js |
+| Backend | Node.js (Express.js) |
 | Messaging | MQTT (Mosquitto) |
 | Database | PostgreSQL |
 | Cache | Redis |
@@ -73,6 +62,8 @@ Bu proje, teslimat yapabilen drone’ların izlenmesini, komutlarla yönetilmesi
 
 ## Sonraki Aşamalar (MVP Sonrası)
 
+- Kullanıcı Sistemi & Yetkilendirme
+- Uyarı Sistemi (Alerting)
 - Gelişmiş görev planlama
 - Drone teslimat rota optimizasyonu
 - Kullanıcıya özel dashboard
