@@ -20,6 +20,10 @@ class BaseModel extends Model {
     };
   }
 
+  static lazyRelation(fn) {
+    return fn();
+  }
+
   async $beforeInsert() {
     this.createdAt = new Date().toISOString();
   }
