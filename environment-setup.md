@@ -47,6 +47,11 @@ Test
 docker exec -it havadash_mosquitto mosquitto_pub -h localhost -p 1883 -t "test/topic" -m "merhaba"
 
 
+4. Redis Insight - Redis Bağlantısı
+Open http://localhost:5540/
++Add Redis Database
+Connection url: redis:6379
+
 3. Global yarn kurulumu
 >> brew install yarn
 

@@ -70,8 +70,21 @@ services:
     networks:
       - havadash_net
 
+  # Redis Insight
+  redis-ui:
+    image: redis/redisinsight:latest
+    container_name: havadash_redisinsight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"        # Host:Container port mapping
+    volumes:
+      - havadash_redisinsight:/data # Kalıcı veri için volume
+    networks:
+      - havadash_net
+
 volumes:
   havadash_postgres_data:
   havadash_mosquitto_data:
   havadash_mosquitto_log:
   havadash_redis_data:
+  havadash_redisinsight:
