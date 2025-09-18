@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 app.get("/health", async (req, res) => {
   try {
-    // DB bağlantısını test et
     await knex.raw("SELECT 1+1 AS result");
     res.json({ status: "ok", db: "connected" });
   } catch (err) {

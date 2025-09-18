@@ -40,7 +40,7 @@ NODE_ENV=development
 
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=myappdb
+DB_NAME=havadashdb
 DB_USER=myuser
 DB_PASSWORD=mypassword
 

@@ -22,7 +22,7 @@ Save password? → işaretle
 Bağlantıyı Test Et
 
 Save tıkla → Sol panelde server bağlandıysa yeşil simge görünecek
-Databases → myappdb → Schemas → public → Tables altında tabloları görebilirsin
+Databases → havadashdb → Schemas → public → Tables altında tabloları görebilirsin
 
 
 3. MQTT Explorer Kurulumu
