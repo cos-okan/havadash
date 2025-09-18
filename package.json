@@ -1,5 +1,7 @@
 {
+  "name": "havadash",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
