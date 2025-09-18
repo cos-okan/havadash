@@ -1,0 +1,77 @@
+version: "3.9"
+
+networks:
+  havadash_net:
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: havadash_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: myappdb
+    volumes:
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
+      - havadash_postgres_data:/var/lib/postgresql/data
+    networks:
+      - havadash_net
+
+  # Keycloak
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.1
+    container_name: havadash_keycloak
+    command: start-dev
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: havadash_postgres
+      KC_DB_URL_DATABASE: keycloakdb
+      KC_DB_USERNAME: myuser
+      KC_DB_PASSWORD: mypassword
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - ./docker/keycloak:/opt/keycloak/data/import
+    networks:
+      - havadash_net
+
+  # Mosquitto MQTT broker
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: havadash_mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./docker/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - havadash_mosquitto_data:/mosquitto/data
+      - havadash_mosquitto_log:/mosquitto/log
+    networks:
+      - havadash_net
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: havadash_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - havadash_redis_data:/data
+    networks:
+      - havadash_net
+
+volumes:
+  havadash_postgres_data:
+  havadash_mosquitto_data:
+  havadash_mosquitto_log:
+  havadash_redis_data:
