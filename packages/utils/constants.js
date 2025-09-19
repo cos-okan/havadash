@@ -55,6 +55,8 @@ const ERROR_CODES = {
     TOKEN_NOT_FOUND: 'TOKEN_NOT_FOUND',
     INVALID_TOKEN: 'INVALID_TOKEN',
     EXPIRED_TOKEN: 'EXPIRED_TOKEN',
+    USER_NOT_FOUND: 'USER_NOT_FOUND_ERROR',
+    USER_ALREADY_EXIST: 'USER_ALREADY_EXIST_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -70,6 +72,8 @@ const ERROR_MESSAGES = {
     TOKEN_NOT_FOUND: '[Auth] Authorization header içinde token bulunamadı.',
     INVALID_TOKEN: '[Auth] Token geçersiz.',
     EXPIRED_TOKEN: '[Auth] Token süresi dolmuş.',
+    USER_ALREADY_EXIST: 'Kullanıcı zaten mevcut.',
+    USER_NOT_FOUND: 'Kullanıcı bulunamadı.',
 };
 
 const ERROR_STATUS = {
@@ -85,12 +89,18 @@ const ERROR_STATUS = {
     TOKEN_NOT_FOUND: 401,
     INVALID_TOKEN: 403,
     EXPIRED_TOKEN: 401,
+    USER_NOT_FOUND: 404,
+    USER_ALREADY_EXIST: 409,
 };
 
 const MESSAGES = {
     USER_LOGIN_SUCCESS: 'Başarıyla giriş yapıldı.',
     LOGOUT_SUCCESS: 'Oturum sonlandırıldı.',
     USER_FETCHED_SUCCESS: 'Kullanıcı başarıyla getirildi.',
+    USERS_FETCHED_SUCCESS: 'Kullanıcılar başarıyla getirildi.',
+    USER_CREATED_SUCCESS: 'Kullanıcı başarıyla oluşturuldu.',
+    USER_UPDATED_SUCCESS: 'Kullanıcı başarıyla güncellendi.',
+    USER_DELETED_SUCCESS: 'Kullanıcı başarıyla silindi.',
 };
 
 

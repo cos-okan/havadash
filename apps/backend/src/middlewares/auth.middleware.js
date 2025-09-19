@@ -1,8 +1,8 @@
-import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import { EXCLUDED_URLS, HEADERS, TokenNotFoundError, InvalidTokenError, ExpiredTokenError } from "@havadash/utils";
+import config from "../../config/app.config.js";
 
-const verifyAsync = promisify(jwt.verify);
+const { jwtConf: jwtConf } = config.COMMON;
 
 const authMiddleware = async (req, res, next) => {
   if (EXCLUDED_URLS.some((url) => req.path.startsWith(url))) {
@@ -10,19 +10,27 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
-    const token = req.headers[HEADERS.AUTHORIZATION]?.split(" ")[1];
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
     if (!token) {
       throw new TokenNotFoundError();
     }
 
-    const decoded = await verifyAsync(token, { algorithms: ["RS256"] });
+    jwt.verify(token, jwtConf.jwtSecret, (err, user) => {
+      if (err) {
+        return res.status(403).json({ message: "[Auth] Token geçersiz." });
+      }
+      req.user = user;
+      next();
+    });
+
+    const decoded = jwt.decode(token);
 
     const currentTime = Math.floor(Date.now() / 1000);
     if (decoded.exp < currentTime) {
       throw new ExpiredTokenError();
     }
 
-    req.user = decoded;
     next();
   } catch (err) {
     if (err instanceof jwt.JsonWebTokenError) {

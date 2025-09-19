@@ -28,7 +28,7 @@ export async function login(req, res, next) {
 
     next();
   } catch (err) {
-    log('Error at AuthController.login:', err);
+    log('Error at AuthController.login: ${err}');
     next(err);
   }
 }

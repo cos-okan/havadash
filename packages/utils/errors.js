@@ -29,6 +29,41 @@ class BaseError extends Error {
     }
 }
 
+class HttpError extends BaseError {
+    constructor(
+        message = ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+        statusCode = ERROR_STATUS.INTERNAL_SERVER_ERROR,
+        name = ERROR_CODES.INTERNAL_SERVER_ERROR,
+        isOperational = true,
+        errors = null,
+        code = name
+    ) {
+        super(message, statusCode, name, isOperational, errors, code);
+        this.isHttpError = true;
+    }
+}
+
+class ConflictError extends HttpError {
+    constructor(
+        message = ERROR_MESSAGES.CONFLICT,
+        name = ERROR_CODES.CONFLICT,
+        errors = null
+    ) {
+        super(message, ERROR_STATUS.CONFLICT, name, true, errors);
+    }
+}
+
+
+class NotFoundError extends HttpError {
+    constructor(
+        message = ERROR_MESSAGES.NOT_FOUND,
+        name = ERROR_CODES.NOT_FOUND,
+        errors = null
+    ) {
+        super(message, ERROR_STATUS.NOT_FOUND, name, true, errors);
+    }
+}
+
 class TokenNotFoundError extends BaseError {
     constructor(message = ERROR_MESSAGES.TOKEN_NOT_FOUND) {
         super(message, ERROR_STATUS.TOKEN_NOT_FOUND, ERROR_CODES.TOKEN_NOT_FOUND);
@@ -47,8 +82,22 @@ class ExpiredTokenError extends BaseError {
     }
 }
 
+class UserNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.USER_NOT_FOUND, name = ERROR_CODES.USER_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.USER_NOT_FOUND, name, true, errors);
+  }
+}
+
+class UserAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.USER_ALREADY_EXIST, name = ERROR_CODES.USER_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.USER_ALREADY_EXIST, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
-  ExpiredTokenError
+  ExpiredTokenError,
+  UserNotFoundError,
+  UserAlreadyExistError
 };
