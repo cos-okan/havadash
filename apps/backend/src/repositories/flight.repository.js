@@ -1,8 +1,8 @@
 import BaseRepository from "./base.repository.js";
 
-export default class OrderRepository extends BaseRepository{
-  constructor(Order) {
-    super(Order);
+export default class FlightRepository extends BaseRepository{
+  constructor(Flight) {
+    super(Flight);
   }
 
   async findAll() {

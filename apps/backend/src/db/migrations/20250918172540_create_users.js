@@ -9,8 +9,9 @@ export async function up(knex) {
     table.integer('created_by').notNullable();
     table.integer('updated_by').nullable();
     table.timestamps(true, true);
-    table.uuid('keycloak_id').notNullable().unique();
+    table.string('email').notNullable().unique();
     table.string('username').notNullable();
+    table.string('password_hash').notNullable();
     table.integer('role_code').unsigned().notNullable().references('code').inTable('prm_user_roles');
   });
 };

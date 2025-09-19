@@ -4,15 +4,14 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "lint": "eslint . --ext .js",
-    "migrate": "npx knex migrate:latest --knexfile knexfile.js --cwd .",
-    "rollback": "npx knex migrate:rollback --all --knexfile knexfile.js --cwd .",
-    "seed": "npx knex seed:run --knexfile knexfile.js --cwd . --specific=default.seed.js",
-    "reset-keycloak": "npx knex seed:run --knexfile knexfile.js --cwd . --specific=reset-keycloak.seed.js",
+    "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js --cwd .",
+    "rollback": "npx knex migrate:rollback --all --knexfile src/db/knexfile.js --cwd .",
+    "seed": "npx knex seed:run --knexfile src/db/knexfile.js --cwd . --specific=default.seed.js",
     "reset": "yarn rollback && yarn reset-keycloak && yarn migrate && yarn seed ",
-    "dummy-seed": "npx knex seed:run --knexfile knexfile.js --cwd . --specific=dummy.seed.js",
+    "dummy-seed": "npx knex seed:run --knexfile src/db/knexfile.js --cwd . --specific=dummy.seed.js",
     "test": "jest"
   },
   "keywords": [
@@ -24,20 +23,23 @@
   "author": "Can Soylu",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^9.0.2",
     "knex": "^2.5.1",
     "objection": "^3.1.0",
     "pg": "^8.11.1",
-    "dotenv": "^16.3.1",
-    "cors": "^2.8.5",
-    "body-parser": "^1.20.2",
-    "bcrypt": "^5.1.1",
-    "jsonwebtoken": "^9.0.2"
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
     "eslint": "^8.47.0",
     "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
     "supertest": "^6.3.3"
   },
   "imports": {
