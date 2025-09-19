@@ -12,10 +12,10 @@ export default {
       password: process.env.DB_PASSWORD || "mypassword",
     },
     migrations: {
-      directory: "./src/migrations",
+      directory: "./migrations",
     },
     seeds: {
-      directory: "./scripts",
+      directory: "./seeds",
     },
   },
 
@@ -29,10 +29,10 @@ export default {
       password: process.env.DB_PASSWORD,
     },
     migrations: {
-      directory: "./src/migrations",
+      directory: "./migrations",
     },
     seeds: {
-      directory: "./scripts",
+      directory: "./seeds",
     },
   },
 };

@@ -14,11 +14,12 @@ class User extends BaseModel {
     return {
       type: 'object',
       ...super.jsonSchema,
-      required: [...super.jsonSchema.required, 'keycloakId', 'username', 'roleCode'],
+      required: [...super.jsonSchema.required, 'email', 'username', 'passwordHash', 'roleCode'],
       properties: {
         ...super.jsonSchema.properties,
-        keycloakId: { type: 'string', format: 'uuid' },
-        username: { type: 'string' },
+        email: { type: 'string', minLength: 1, maxLength: 255 },
+        username: { type: 'string', minLength: 1, maxLength: 255 },
+        passwordHash: { type: 'string', minLength: 1, maxLength: 255 },
         roleCode: { type: 'integer' },
       },
     }

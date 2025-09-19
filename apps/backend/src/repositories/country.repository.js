@@ -1,12 +1,12 @@
 import BaseRepository from "./base.repository.js";
 
-export default class OrderRepository extends BaseRepository{
-  constructor(Order) {
-    super(Order);
+export default class CountryRepository extends BaseRepository {
+  constructor(Country) {
+    super(Country);
   }
 
   async findAll() {
-    return await this.model.query();
+    return this.model.query();
   }
 
   async findAllWithQuery(params, options) {
@@ -18,6 +18,18 @@ export default class OrderRepository extends BaseRepository{
 
     if (include && include.length > 0) {
       query = query.withGraphFetched(`[${include.join(',')}]`);
+    }
+
+    return query;
+  }
+
+  async findByName(name, include = []) {
+    let query = this.model.query()
+      .where("name", name)
+      .first();
+
+    if (include.length > 0) {
+      query = query.withGraphFetched(`[${include.join(",")}]`);
     }
 
     return query;

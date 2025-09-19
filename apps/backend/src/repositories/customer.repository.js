@@ -1,0 +1,43 @@
+import BaseRepository from "./base.repository.js";
+
+export default class CustomerRepository extends BaseRepository {
+  constructor(Customer) {
+    super(Customer);
+  }
+
+  async findAll() {
+    return this.model.query();
+  }
+
+  async findAllWithQuery(params, options) {
+    return this.buildQuery(params, options);
+  }
+
+  async findById(id) {
+    return this.model.query().findById(id);
+  }
+
+  async findByName(name) {
+    return this.model.query().where("name", name).first();
+  }
+
+  async findByPhoneNumber(phoneNumber) {
+    return this.model.query().where("phoneNumber", phoneNumber).first();
+  }
+
+  async findByEmail(email) {
+    return this.model.query().where("email", email).first();
+  }
+
+  async create(data) {
+    return this.model.query().insert(data);
+  }
+
+  async update(id, data) {
+    return this.model.query().patchAndFetchById(id, data);
+  }
+
+  async delete(id) {
+    return this.model.query().deleteById(id);
+  }
+}
