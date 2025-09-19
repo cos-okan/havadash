@@ -33,7 +33,7 @@ export async function logout(user) {
   }
 
 export async function getMe(user) {
-  const user = await userRepository.findById(user.id)
-  if (!user) throw new Error("User not found");
-  return user;
+  const foundUser = await userRepository.findById(user.id)
+  if (!foundUser) throw new Error("User not found");
+  return foundUser;
 }

@@ -13,8 +13,14 @@ export default class CustomerRepository extends BaseRepository {
     return this.buildQuery(params, options);
   }
 
-  async findById(id) {
-    return this.model.query().findById(id);
+  async findById(id, include = []) {
+    let query = this.model.query().findById(id);
+
+    if (include && include.length > 0) {
+      query = query.withGraphFetched(`[${include.join(',')}]`);
+    }
+
+    return query;
   }
 
   async findByName(name) {

@@ -13,8 +13,14 @@ export default class UserRepository extends BaseRepository {
     return this.buildQuery(params, options);
   }
 
-  async findById(id) {
-    return this.model.query().findById(id);
+  async findById(id, include = []) {
+    let query = this.model.query().findById(id);
+
+    if (include && include.length > 0) {
+      query = query.withGraphFetched(`[${include.join(',')}]`);
+    }
+
+    return query;
   }
 
   async findByEmail(email) {
@@ -35,5 +41,18 @@ export default class UserRepository extends BaseRepository {
 
   async delete(id) {
     return this.model.query().deleteById(id);
+  }
+
+  async findByUniqueFieldsApartFromId({ email }, id) {
+    if (!email) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (email) builder.orWhere('email', email);
+      })
+      .first();
   }
 }

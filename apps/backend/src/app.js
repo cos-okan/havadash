@@ -6,13 +6,13 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import knex from "./db/db.js";
 import config from '../config/app.config.js';
 
 import authMiddleware from './middlewares/auth.middleware.js';
 import errorMiddleware from "./middlewares/error.middleware.js";
 import responseMiddleware from "./middlewares/response.middleware.js";
 import authRoutes from './routes/auth.routes.js'; 
+import userRoutes from './routes/user.routes.js'; 
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -36,7 +36,8 @@ app.use(
 
 app.use(authMiddleware);
 
-app.use(`${config.SERVICE.endpoint_prefix}/auth`, authRoutes);
+//app.use(`${config.SERVICE.endpoint_prefix}/auth`, authRoutes);
+app.use(`${config.SERVICE.endpoint_prefix}/users`, userRoutes);
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);
