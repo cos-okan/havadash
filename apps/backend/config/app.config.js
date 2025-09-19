@@ -35,6 +35,11 @@ const config = {
     redis: {
       url: process.env.REDIS_URL,
     },
+    mosquitto: {
+      host: process.env.MQTT_HOST,
+      port: process.env.MQTT_PORT,
+      telemetry_topic: process.env.MQTT_TELEMETRY_DATA_TOPIC,
+    },
   },
 };
 

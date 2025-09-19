@@ -493,25 +493,6 @@ components:
                   type: string
                 expiresIn:
                   type: integer
-    loginErrorResponse:
-      allOf:
-        - $ref: '#/components/schemas/baseError'
-        - type: object
-          properties:
-            data:
-              type: object
-              properties:
-                userId:
-                  type: integer
-                  description: The unique ID of the created user
-                keycloakId:
-                  type: string
-                  format: uuid
-                  description: The unique ID of the keycloak user
-                requiredActions:
-                  type: array
-                  items:
-                    type: string
     logoutRequest:
       type: object
       required:

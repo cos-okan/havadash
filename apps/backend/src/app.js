@@ -1,4 +1,6 @@
 import './db/db.js';
+import "./services/mqtt.service.js";
+import "./jobs/heartbeat.job.js";
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
@@ -7,12 +9,12 @@ import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import config from '../config/app.config.js';
-
 import authMiddleware from './middlewares/auth.middleware.js';
 import errorMiddleware from "./middlewares/error.middleware.js";
 import responseMiddleware from "./middlewares/response.middleware.js";
 import authRoutes from './routes/auth.routes.js'; 
 import userRoutes from './routes/user.routes.js'; 
+import mqttRoutes from './routes/mqtt.routes.js';
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -34,9 +36,11 @@ app.use(
   }),
 );
 
+app.use(`${config.SERVICE.endpoint_prefix}/mqtt`, mqttRoutes);
+
 app.use(authMiddleware);
 
-//app.use(`${config.SERVICE.endpoint_prefix}/auth`, authRoutes);
+app.use(`${config.SERVICE.endpoint_prefix}/auth`, authRoutes);
 app.use(`${config.SERVICE.endpoint_prefix}/users`, userRoutes);
 
 app.use(errorMiddleware);
