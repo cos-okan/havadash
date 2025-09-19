@@ -10,7 +10,7 @@ havadash/
 │       └── .env.example
 │
 ├── infra/
-│   └── docker-compose.yml      # PostgreSQL, Redis, Mosquitto, Keycloak
+│   └── docker-compose.yml      # PostgreSQL, Redis, Mosquitto
 │
 ├── packages/                   # Ortak kod/paketler
 └── README.md
@@ -28,7 +28,6 @@ Servis	    Host	      Port
 PostgreSQL	localhost	  5432
 Redis	      localhost	  6379
 Mosquitto	  localhost	  1883
-Keycloak	  localhost	  8080
 
 3. .env Dosyasını Oluşturma
 cd ../apps/backend
@@ -52,13 +51,6 @@ MQTT_HOST=localhost
 MQTT_PORT=1883
 MQTT_USERNAME=
 MQTT_PASSWORD=
-
-KEYCLOAK_HOST=http://localhost:8080
-KEYCLOAK_REALM=myrealm
-KEYCLOAK_CLIENT_ID=myclient
-KEYCLOAK_CLIENT_SECRET=mysecret
-KEYCLOAK_ADMIN_USER=admin
-KEYCLOAK_ADMIN_PASSWORD=admin
 
 JWT_SECRET=supersecretkey
 JWT_EXPIRES_IN=1d

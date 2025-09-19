@@ -32,7 +32,6 @@ infra/docker/postgres/init/*.sql
 infra/docker/mosquitto/data/
 infra/docker/mosquitto/log/
 infra/docker/redis/data/
-infra/docker/keycloak/
 
 # Editor / OS files
 .DS_Store
