@@ -73,7 +73,8 @@ const ERROR_CODES = {
     TELEMETRY_DATA_NOT_FOUND: 'TELEMETRY_DATA_NOT_FOUND_ERROR',
     ALARM_DATA_NOT_FOUND: 'ALARM_DATA_NOT_FOUND_ERROR',
     DRONE_COMMAND_NOT_FOUND: 'DRONE_COMMAND_NOT_FOUND_ERROR',
-    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'CUSTOMER_ADDRESS_MAP_NOT_FOUND_ERROR'
+    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'CUSTOMER_ADDRESS_MAP_NOT_FOUND_ERROR',
+    PRM_NOT_FOUND: 'PRM_NOT_FOUND_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -107,7 +108,8 @@ const ERROR_MESSAGES = {
     TELEMETRY_DATA_NOT_FOUND: 'Telemetri verisi bulunamadı.',
     ALARM_DATA_NOT_FOUND: 'Alarm verisi bulunamadı.',
     DRONE_COMMAND_NOT_FOUND: 'Drone komutu bulunamadı.',
-    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'Müşteri-adres bağlantısı bulunamadı.'
+    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'Müşteri-adres bağlantısı bulunamadı.',
+    PRM_NOT_FOUND: 'PRM tablosu bulunamadı.',
 };
 
 const ERROR_STATUS = {
@@ -143,6 +145,7 @@ const ERROR_STATUS = {
     ALARM_DATA_NOT_FOUND: 404,
     DRONE_COMMAND_NOT_FOUND: 404,
     CUSTOMER_ADDRESS_MAP_NOT_FOUND: 404,
+    PRM_NOT_FOUND: 404,
 };
 
 const MESSAGES = {
@@ -226,6 +229,12 @@ const MESSAGES = {
     CUSTOMER_ADDRESS_MAP_CREATED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla oluşturuldu.',
     CUSTOMER_ADDRESS_MAP_UPDATED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla güncellendi.',
     CUSTOMER_ADDRESS_MAP_DELETED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla silindi.',
+
+    PRM_FETCHED_SUCCESS: 'Prm tablosu başarıyla getirildi.',
+    PRMS_FETCHED_SUCCESS: 'Prm tablo listesi başarıyla getirildi.',
+    PRM_CREATED_SUCCESS: 'Prm tablosu başarıyla oluşturuldu.',
+    PRM_UPDATED_SUCCESS: 'Prm tablosu başarıyla güncellendi.',
+    PRM_DELETED_SUCCESS: 'Prm tablosu başarıyla silindi.',
 };
 
 

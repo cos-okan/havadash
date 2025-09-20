@@ -25,6 +25,7 @@ import FlightLocationRepository from "./flight-location.repository.js";
 import TelemtryDataRepository from "./telemetry-data.repository.js";
 import AlarmDataRepository from "./alarm-data.repository.js";
 import DroneCommandRepository from "./drone-command.repository.js";
+import PrmRepository from "./prm.repository.js";
 
 const userRepository = new UserRepository(User);
 const customerRepository = new CustomerRepository(Customer);
@@ -39,6 +40,7 @@ const flightLocationRepository = new FlightLocationRepository(FlightLocation);
 const telemetryDataRepository = new TelemtryDataRepository(TelemetryData);
 const alarmDataRepository = new AlarmDataRepository(AlarmData);
 const droneCommandRepository = new DroneCommandRepository(DroneCommand);
+
 
 export { 
   userRepository, 

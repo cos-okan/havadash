@@ -30,6 +30,7 @@ import {
   alarmDataRoutes,
   droneCommandRoutes,
   customerAddressMapRoutes,
+  prmRoutes
 } from './routes/index.js';
 
 import { fileURLToPath } from 'url';
@@ -70,6 +71,7 @@ app.use(`${config.SERVICE.endpoint_prefix}/telemetryData`, telemetryDataRoutes.g
 app.use(`${config.SERVICE.endpoint_prefix}/alarmData`, alarmDataRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/droneCommands`, droneCommandRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/customerAddressMaps`, customerAddressMapRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/prms`, prmRoutes.getRouter());
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);

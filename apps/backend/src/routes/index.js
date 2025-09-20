@@ -13,6 +13,7 @@ import TelemetryDataRoutes from "./telemetry-data.routes.js";
 import AlarmDataRoutes from "./alarm-data.routes.js";
 import DroneCommandRoutes from "./drone-command.routes.js";
 import CustomerAddressMapRoutes from "./customer-address-map.routes.js";
+import PrmRoutes from "./prm.routes.js";
 
 const mqttRoutes = new MqttRoutes();
 const authRoutes = new AuthRoutes();
@@ -29,6 +30,7 @@ const telemetryDataRoutes = new TelemetryDataRoutes();
 const alarmDataRoutes = new AlarmDataRoutes();
 const droneCommandRoutes = new DroneCommandRoutes();
 const customerAddressMapRoutes = new CustomerAddressMapRoutes();
+const prmRoutes = new PrmRoutes();
 
 export {
   mqttRoutes,
@@ -45,5 +47,6 @@ export {
   telemetryDataRoutes,
   alarmDataRoutes,
   droneCommandRoutes,
-  customerAddressMapRoutes
+  customerAddressMapRoutes,
+  prmRoutes
 };

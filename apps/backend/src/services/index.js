@@ -13,6 +13,7 @@ import TelemetryDataService from "./telemetry-data.service.js";
 import AlarmDataService from "./alarm-data.service.js";
 import DroneCommandService from "./drone-command.service.js";
 import CustomerAddressMapService from "./customer-address-map.service.js";
+import PrmService from "./prm.service.js";
 
 const mqttService = new MqttService();
 const authService = new AuthService();
@@ -29,6 +30,7 @@ const telemetryDataService = new TelemetryDataService();
 const alarmDataService = new AlarmDataService();
 const droneCommandService = new DroneCommandService();
 const customerAddressMapService = new CustomerAddressMapService();
+const prmService = new PrmService();
 
 export { 
   mqttService,
@@ -45,5 +47,6 @@ export {
   telemetryDataService,
   alarmDataService,
   droneCommandService,
-  customerAddressMapService
+  customerAddressMapService,
+  prmService
 };

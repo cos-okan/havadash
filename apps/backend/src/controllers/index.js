@@ -12,6 +12,7 @@ import TelemetryDataController from "./telemetry-data.controller.js";
 import AlarmDataController from "./alarm-data.controller.js";
 import DroneCommandController from "./drone-command.controller.js";
 import CustomerAddressMapController from "./customer-address-map.controller.js";
+import PrmController from "./prm.controller.js";
 
 const authController = new AuthController();
 const userController = new UserController();
@@ -27,6 +28,7 @@ const telemetryDataController = new TelemetryDataController();
 const alarmDataController = new AlarmDataController();
 const droneCommandController = new DroneCommandController();
 const customerAddressMapController = new CustomerAddressMapController();
+const prmController = new PrmController();
 
 export { 
   authController,
@@ -42,5 +44,6 @@ export {
   telemetryDataController,
   alarmDataController,
   droneCommandController,
-  customerAddressMapController
+  customerAddressMapController,
+  prmController
 };

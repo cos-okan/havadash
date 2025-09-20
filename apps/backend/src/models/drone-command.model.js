@@ -14,13 +14,13 @@ class DroneCommand extends BaseModel {
     return {
       type: 'object',
       ...super.jsonSchema,
-      required: [...super.jsonSchema.required, 'droneId', 'typeCode', 'stateCode', 'sentTime', 'params'],
+      required: [...super.jsonSchema.required, 'droneId', 'typeCode', 'stateCode', 'timestamp', 'params'],
       properties: {
         ...super.jsonSchema.properties,
         droneId: { type: 'integer' },
         typeCode: { type: 'integer' },
         stateCode: { type: 'integer' },
-        sentTime: { type: 'string', format: 'date-time' },
+        timestamp: { type: 'string', format: 'date-time' },
         params: { type: 'object'}
       },
     }

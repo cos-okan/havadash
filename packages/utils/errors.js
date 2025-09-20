@@ -196,6 +196,12 @@ class CustomerAddressMapNotFoundError extends NotFoundError {
   }
 }
 
+class PrmNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.PRM_NOT_FOUND, name = ERROR_CODES.PRM_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.PRM_NOT_FOUND, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -218,5 +224,6 @@ export {
   TelemetryDataNotFoundError,
   AlarmDataNotFoundError,
   DroneCommandNotFoundError,
-  CustomerAddressMapNotFoundError
+  CustomerAddressMapNotFoundError,
+  PrmNotFoundError
 };
