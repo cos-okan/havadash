@@ -15,8 +15,8 @@ export async function up(knex) {
     table.integer('state_code').unsigned().notNullable().references('code').inTable('prm_drone_states');
     table.decimal('max_payload_kg').nullable();
     table.decimal('battery_capacity').nullable();
-    table.decimal('latitude').nullable();
-    table.decimal('longitude').nullable();
+    table.decimal('latitude', 10, 7).nullable();
+    table.decimal('longitude', 10, 7).nullable();
     table.decimal('altitude').nullable();
     table.timestamp('last_location_time').nullable();
   });

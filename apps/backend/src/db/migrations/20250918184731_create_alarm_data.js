@@ -13,6 +13,9 @@ export async function up(knex) {
     table.integer('drone_id').unsigned().notNullable().references('id').inTable('drones');
     table.integer('type_code').unsigned().notNullable().references('code').inTable('prm_alarm_types');
     table.integer('severity_code').unsigned().notNullable().references('code').inTable('prm_alarm_severities');
+    table.decimal('latitude', 10, 7).nullable();
+    table.decimal('longitude', 10, 7).nullable();
+    table.decimal('altitude').nullable();
     table.string('message').nullable();
     table.timestamp('timestamp').notNullable();
   });

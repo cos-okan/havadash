@@ -11,8 +11,8 @@ export async function up(knex) {
     table.timestamps(true, true);
     table.integer('flight_id').unsigned().notNullable().references('id').inTable('flights');
     table.integer('drone_id').unsigned().notNullable().references('id').inTable('drones');
-    table.decimal('latitude').nullable();
-    table.decimal('longitude').nullable();
+    table.decimal('latitude', 10, 7).nullable();
+    table.decimal('longitude', 10, 7).nullable();
     table.decimal('altitude').nullable();
     table.decimal('speed').nullable();
     table.decimal('battery_level').nullable();

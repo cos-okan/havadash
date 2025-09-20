@@ -13,8 +13,8 @@ export async function up(knex) {
     table.string('address_line').notNullable();
     table.integer('city_id').unsigned().notNullable().references('id').inTable('cities');
     table.integer('zip_code').nullable();
-    table.decimal('latitude').notNullable();
-    table.decimal('longitude').notNullable();
+    table.decimal('latitude', 10, 7).notNullable();
+    table.decimal('longitude', 10, 7).notNullable();
   });
 };
 

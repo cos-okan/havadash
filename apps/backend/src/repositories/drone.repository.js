@@ -23,6 +23,10 @@ export default class DroneRepository extends BaseRepository{
     return query;
   }
 
+  async findByCode(code) {
+    return this.model.query().where("code", code).first();
+  }
+
   async create(data) {
     return this.model.query().insert(data);
   }
@@ -33,5 +37,18 @@ export default class DroneRepository extends BaseRepository{
 
   async delete(id) {
     return this.model.query().deleteById(id);
+  }
+
+  async findByUniqueFieldsApartFromId({ code }, id) {
+    if (!code) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (code) builder.orWhere('code', code);
+      })
+      .first();
   }
 }
