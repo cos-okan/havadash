@@ -23,6 +23,11 @@ export default class OrderRepository extends BaseRepository{
     return query;
   }
 
+  async findByOrderNo(orderNo) {
+    return this.model.query().where("orderNo", orderNo).first();
+  }
+
+
   async create(data) {
     return this.model.query().insert(data);
   }
@@ -33,5 +38,18 @@ export default class OrderRepository extends BaseRepository{
 
   async delete(id) {
     return this.model.query().deleteById(id);
+  }
+
+  async findByUniqueFieldsApartFromId({ orderNo }, id) {
+    if (!orderNo) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (orderNo) builder.orWhere('orderNo', orderNo);
+      })
+      .first();
   }
 }

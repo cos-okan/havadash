@@ -118,6 +118,42 @@ class DroneAlreadyExistError extends ConflictError {
   }
 }
 
+class OrderNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.ORDER_NOT_FOUND, name = ERROR_CODES.ORDER_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.ORDER_NOT_FOUND, name, true, errors);
+  }
+}
+
+class OrderAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.ORDER_ALREADY_EXIST, name = ERROR_CODES.ORDER_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.ORDER_ALREADY_EXIST, name, true, errors);
+  }
+}
+
+class CountryNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.COUNTRY_NOT_FOUND, name = ERROR_CODES.COUNTRY_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.COUNTRY_NOT_FOUND, name, true, errors);
+  }
+}
+
+class CountryAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.COUNTRY_ALREADY_EXIST, name = ERROR_CODES.COUNTRY_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.COUNTRY_ALREADY_EXIST, name, true, errors);
+  }
+}
+
+class CityNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.CITY_NOT_FOUND, name = ERROR_CODES.CITY_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.CITY_NOT_FOUND, name, true, errors);
+  }
+}
+
+class CityAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.CITY_ALREADY_EXIST, name = ERROR_CODES.CITY_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.CITY_ALREADY_EXIST, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -127,5 +163,11 @@ export {
   CustomerNotFoundError,
   CustomerAlreadyExistError,
   DroneNotFoundError,
-  DroneAlreadyExistError
+  DroneAlreadyExistError,
+  OrderNotFoundError,
+  OrderAlreadyExistError,
+  CountryNotFoundError,
+  CountryAlreadyExistError,
+  CityNotFoundError,
+  CityAlreadyExistError
 };

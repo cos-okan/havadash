@@ -35,14 +35,10 @@ export default class CityRepository extends BaseRepository {
     return query;
   }
 
-  async findByName(name, include = []) {
+  async findByName(name) {
     let query = this.model.query()
       .where("name", name)
       .first();
-
-    if (include.length > 0) {
-      query = query.withGraphFetched(`[${include.join(",")}]`);
-    }
 
     return query;
   }
@@ -57,5 +53,18 @@ export default class CityRepository extends BaseRepository {
 
   async delete(id) {
     return this.model.query().deleteById(id);
+  }
+
+  async findByUniqueFieldsApartFromId({ name }, id) {
+    if (!name) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (name) builder.orWhere('name', name);
+      })
+      .first();
   }
 }

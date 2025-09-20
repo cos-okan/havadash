@@ -14,7 +14,16 @@ import authMiddleware from './middlewares/auth.middleware.js';
 import errorMiddleware from "./middlewares/error.middleware.js";
 import responseMiddleware from "./middlewares/response.middleware.js";
 
-import { authRoutes, userRoutes, customerRoutes, droneRoutes, mqttRoutes } from './routes/index.js';
+import { 
+  mqttRoutes, 
+  authRoutes, 
+  userRoutes, 
+  customerRoutes, 
+  droneRoutes, 
+  orderRoutes, 
+  countryRoutes,
+  cityRoutes,
+} from './routes/index.js';
 
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +53,9 @@ app.use(`${config.SERVICE.endpoint_prefix}/auth`, authRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/users`, userRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/customers`, customerRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/drones`, droneRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/orders`, orderRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/countries`, countryRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/cities`, cityRoutes.getRouter());
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);
