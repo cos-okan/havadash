@@ -48,9 +48,6 @@ export async function logout(req, res, next) {
   } catch (err) {
     next(err);
   }
-
-  res.clearCookie("token");
-  res.json({ message: "Logged out" });
 }
 
 export async function me(req, res, next) {
@@ -66,6 +63,7 @@ export async function me(req, res, next) {
     };
     next();
   } catch (err) {
+    log('Error at AuthController.me: ${err}');
     next(err);
   }
 }
