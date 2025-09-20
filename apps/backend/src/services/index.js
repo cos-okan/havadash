@@ -9,6 +9,10 @@ import CityService from "./city.service.js";
 import AddressService from "./address.service.js";
 import FlightService from "./flight.service.js";
 import FlightLocationService from "./flight-location.service.js";
+import TelemetryDataService from "./telemetry-data.service.js";
+import AlarmDataService from "./alarm-data.service.js";
+import DroneCommandService from "./drone-command.service.js";
+import CustomerAddressMapService from "./customer-address-map.service.js";
 
 const mqttService = new MqttService();
 const authService = new AuthService();
@@ -21,6 +25,10 @@ const cityService = new CityService();
 const addressService = new AddressService();
 const flightService = new FlightService();
 const flightLocationService = new FlightLocationService();
+const telemetryDataService = new TelemetryDataService();
+const alarmDataService = new AlarmDataService();
+const droneCommandService = new DroneCommandService();
+const customerAddressMapService = new CustomerAddressMapService();
 
 export { 
   mqttService,
@@ -33,5 +41,9 @@ export {
   cityService,
   addressService,
   flightService,
-  flightLocationService
+  flightLocationService,
+  telemetryDataService,
+  alarmDataService,
+  droneCommandService,
+  customerAddressMapService
 };

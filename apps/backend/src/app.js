@@ -25,7 +25,11 @@ import {
   cityRoutes,
   addressRoutes,
   flightRoutes,
-  flightLocationRoutes
+  flightLocationRoutes,
+  telemetryDataRoutes,
+  alarmDataRoutes,
+  droneCommandRoutes,
+  customerAddressMapRoutes,
 } from './routes/index.js';
 
 import { fileURLToPath } from 'url';
@@ -62,6 +66,10 @@ app.use(`${config.SERVICE.endpoint_prefix}/cities`, cityRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/addresses`, addressRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/flights`, flightRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/flightLocations`, flightLocationRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/telemetryData`, telemetryDataRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/alarmData`, alarmDataRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/droneCommands`, droneCommandRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/customerAddressMaps`, customerAddressMapRoutes.getRouter());
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);
