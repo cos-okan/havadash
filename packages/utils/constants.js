@@ -75,6 +75,10 @@ const ERROR_CODES = {
     CITY_ALREADY_EXIST: 'CITY_ALREADY_EXIST_ERROR',
 
     ADDRESS_NOT_FOUND: 'ADDRESS_NOT_FOUND_ERROR',
+
+    FLIGHT_NOT_FOUND: 'FLIGHT_NOT_FOUND_ERROR',
+
+    FLIGH_LOCATION_NOT_FOUND: 'FLIGH_LOCATION_NOT_FOUND_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -110,6 +114,10 @@ const ERROR_MESSAGES = {
     CITY_ALREADY_EXIST: 'İl zaten tanımlı',
 
     ADDRESS_NOT_FOUND: 'İl bulunamadı.',
+
+    FLIGHT_NOT_FOUND: 'Uçuş bulunamadı.',
+
+    FLIGH_LOCATION_NOT_FOUND: 'Uçuş konumu bulunamadı.'
 };
 
 const ERROR_STATUS = {
@@ -145,6 +153,10 @@ const ERROR_STATUS = {
     CITY_ALREADY_EXIST: 409,
 
     ADDRESS_NOT_FOUND: 404,
+
+    FLIGHT_NOT_FOUND: 404,
+
+    FLIGH_LOCATION_NOT_FOUND: 404,
 };
 
 const MESSAGES = {
@@ -192,6 +204,18 @@ const MESSAGES = {
     ADDRESS_CREATED_SUCCESS: 'Adres başarıyla oluşturuldu.',
     ADDRESS_UPDATED_SUCCESS: 'Adres başarıyla güncellendi.',
     ADDRESS_DELETED_SUCCESS: 'Adres başarıyla silindi.',
+
+    FLIGHT_FETCHED_SUCCESS: 'Uçuş başarıyla getirildi.',
+    FLIGHTS_FETCHED_SUCCESS: 'Uçuş listesi başarıyla getirildi.',
+    FLIGHT_CREATED_SUCCESS: 'Uçuş başarıyla oluşturuldu.',
+    FLIGHT_UPDATED_SUCCESS: 'Uçuş başarıyla güncellendi.',
+    FLIGHT_DELETED_SUCCESS: 'Uçuş başarıyla silindi.',
+
+    FLIGHT_LOCATION_FETCHED_SUCCESS: 'Uçuş konum başarıyla getirildi.',
+    FLIGHT_LOCATIONS_FETCHED_SUCCESS: 'Uçuş konum listesi başarıyla getirildi.',
+    FLIGHT_LOCATION_CREATED_SUCCESS: 'Uçuş konum başarıyla oluşturuldu.',
+    FLIGHT_LOCATION_UPDATED_SUCCESS: 'Uçuş konum başarıyla güncellendi.',
+    FLIGHT_LOCATION_DELETED_SUCCESS: 'Uçuş konum başarıyla silindi.',
 };
 
 
