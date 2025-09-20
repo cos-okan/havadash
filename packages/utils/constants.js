@@ -55,12 +55,24 @@ const ERROR_CODES = {
     TOKEN_NOT_FOUND: 'TOKEN_NOT_FOUND',
     INVALID_TOKEN: 'INVALID_TOKEN',
     EXPIRED_TOKEN: 'EXPIRED_TOKEN',
+
     USER_NOT_FOUND: 'USER_NOT_FOUND_ERROR',
     USER_ALREADY_EXIST: 'USER_ALREADY_EXIST_ERROR',
+
     CUSTOMER_NOT_FOUND: 'CUSTOMER_NOT_FOUND_ERROR',
     CUSTOMER_ALREADY_EXIST: 'CUSTOMER_ALREADY_EXIST_ERROR',
+
     DRONE_NOT_FOUND: 'DRONE_NOT_FOUND_ERROR',
     DRONE_ALREADY_EXIST: 'DRONE_ALREADY_EXIST_ERROR',
+
+    ORDER_NOT_FOUND: 'ORDER_NOT_FOUND_ERROR',
+    ORDER_ALREADY_EXIST: 'ORDER_ALREADY_EXIST_ERROR',
+
+    COUNTRY_NOT_FOUND: 'COUNTRY_NOT_FOUND_ERROR',
+    COUNTRY_ALREADY_EXIST: 'COUNTRY_ALREADY_EXIST_ERROR',
+
+    CITY_NOT_FOUND: 'CITY_NOT_FOUND_ERROR',
+    CITY_ALREADY_EXIST: 'CITY_ALREADY_EXIST_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -76,12 +88,24 @@ const ERROR_MESSAGES = {
     TOKEN_NOT_FOUND: '[Auth] Authorization header içinde token bulunamadı.',
     INVALID_TOKEN: '[Auth] Token geçersiz.',
     EXPIRED_TOKEN: '[Auth] Token süresi dolmuş.',
+
     USER_ALREADY_EXIST: 'Kullanıcı zaten mevcut.',
     USER_NOT_FOUND: 'Kullanıcı bulunamadı.',
+
     CUSTOMER_ALREADY_EXIST: 'Müşteri zaten tanımlı',
     CUSTOMER_NOT_FOUND: 'Müşteri bulunamadı.',
+
     DRONE_ALREADY_EXIST: 'Drone zaten tanımlı',
     DRONE_NOT_FOUND: 'Drone bulunamadı.',
+
+    ORDER_NOT_FOUND: 'Sipariş bulunamadı.',
+    ORDER_ALREADY_EXIST: 'Sipariş zaten tanımlı',
+
+    COUNTRY_NOT_FOUND: 'Ülke bulunamadı.',
+    COUNTRY_ALREADY_EXIST: 'Ülke zaten tanımlı',
+
+    CITY_NOT_FOUND: 'İl bulunamadı.',
+    CITY_ALREADY_EXIST: 'İl zaten tanımlı',
 };
 
 const ERROR_STATUS = {
@@ -97,12 +121,24 @@ const ERROR_STATUS = {
     TOKEN_NOT_FOUND: 401,
     INVALID_TOKEN: 403,
     EXPIRED_TOKEN: 401,
+    
     USER_NOT_FOUND: 404,
     USER_ALREADY_EXIST: 409,
+
     CUSTOMER_NOT_FOUND: 404,
     CUSTOMER_ALREADY_EXIST: 409,
+
     DRONE_NOT_FOUND: 404,
     DRONE_ALREADY_EXIST: 409,
+
+    ORDER_NOT_FOUND: 404,
+    ORDER_ALREADY_EXIST: 409,
+
+    COUNTRY_NOT_FOUND: 404,
+    COUNTRY_ALREADY_EXIST: 409,
+
+    CITY_NOT_FOUND: 404,
+    CITY_ALREADY_EXIST: 409,
 };
 
 const MESSAGES = {
@@ -126,6 +162,24 @@ const MESSAGES = {
     DRONE_CREATED_SUCCESS: 'Drone başarıyla oluşturuldu.',
     DRONE_UPDATED_SUCCESS: 'Drone başarıyla güncellendi.',
     DRONE_DELETED_SUCCESS: 'Drone başarıyla silindi.',
+
+    ORDER_FETCHED_SUCCESS: 'Sipariş başarıyla getirildi.',
+    ORDERS_FETCHED_SUCCESS: 'Sipariş listesi başarıyla getirildi.',
+    ORDER_CREATED_SUCCESS: 'Sipariş başarıyla oluşturuldu.',
+    ORDER_UPDATED_SUCCESS: 'Sipariş başarıyla güncellendi.',
+    ORDER_DELETED_SUCCESS: 'Sipariş başarıyla silindi.',
+
+    COUNTRY_FETCHED_SUCCESS: 'Ülke başarıyla getirildi.',
+    COUNTRIES_FETCHED_SUCCESS: 'Ülke listesi başarıyla getirildi.',
+    COUNTRY_CREATED_SUCCESS: 'Ülke başarıyla oluşturuldu.',
+    COUNTRY_UPDATED_SUCCESS: 'Ülke başarıyla güncellendi.',
+    COUNTRY_DELETED_SUCCESS: 'Ülke başarıyla silindi.',
+
+    CITY_FETCHED_SUCCESS: 'İl başarıyla getirildi.',
+    CITIES_FETCHED_SUCCESS: 'İl listesi başarıyla getirildi.',
+    CITY_CREATED_SUCCESS: 'İl başarıyla oluşturuldu.',
+    CITY_UPDATED_SUCCESS: 'İl başarıyla güncellendi.',
+    CITY_DELETED_SUCCESS: 'İl başarıyla silindi.',
 };
 
 

@@ -1,5 +1,12 @@
 import { Model } from "objection";
-import { userService, customerService, droneService } from "../../services/index.js";
+import { 
+  userService, 
+  customerService, 
+  droneService, 
+  orderService, 
+  countryService,
+  cityService
+} from "../../services/index.js";
 import { log } from '../../utils/logger.js';
 import { RoleEnum } from "@havadash/utils";
 import { faker } from '@faker-js/faker';
@@ -11,7 +18,10 @@ export async function seed(knex) {
 
     await seedUsers();
     await seedCustomers();
-    await seedDrones()
+    await seedDrones();
+    await seedOrders();
+    await seedCountries();
+    await seedCities();
 
     log('Dummy seed operation finished...');
   } catch (error) {
@@ -98,4 +108,121 @@ async function seedDrones() {
   await Promise.all(dronePromises);
 
   log(`Dummy drone records have been seeded successfully.`);
+}
+
+async function seedOrders() {
+  const existingCount = await orderService.getCounts();
+
+  if (existingCount > 0) {
+    log('Order records already exist, skipping seed.');
+    return;
+  }
+
+  log('Seeding dummy order records...');
+
+  // TODO: to be implemented
+
+  log(`Dummy drone records have been seeded successfully.`);
+}
+
+async function seedCountries() {
+  const existingCount = await countryService.getCounts();
+
+  if (existingCount > 0) {
+    log('Country records already exist, skipping seed.');
+    return;
+  }
+
+  log('Seeding dummy country records...');
+
+  const countries = [
+    { name: "Türkiye" },
+    { name: "Almanya" },
+    { name: "Amerika Birleşik Devletleri" },
+    { name: "İngiltere" },
+    { name: "Fransa" },
+    { name: "İtalya" },
+    { name: "İspanya" },
+    { name: "Hollanda" },
+    { name: "Kanada" },
+    { name: "Avustralya" },
+  ].map((c) => ({
+    ...c,
+    createdBy: 1,
+  }));
+
+  const countryPromises = countries.map((country) => {
+    return countryService.createCountry(country);
+  });
+
+  await Promise.all(countryPromises);
+
+  log(`Dummy country records have been seeded successfully.`);
+}
+
+async function seedCities() {
+  const existingCount = await cityService.getCounts();
+
+  if (existingCount > 0) {
+    log('City records already exist, skipping seed.');
+    return;
+  }
+
+  log('Seeding dummy city records...');
+
+  const { data, meta } = await countryService.getCountries();
+  const countries = Array.from(data.results)
+  const countryMap = new Map(countries.map((c) => [c.name, c.id]));
+
+  const cityData = [
+    { country: "Türkiye", name: "İstanbul" },
+    { country: "Türkiye", name: "Ankara" },
+    { country: "Türkiye", name: "İzmir" },
+
+    { country: "Almanya", name: "Berlin" },
+    { country: "Almanya", name: "Münih" },
+    { country: "Almanya", name: "Hamburg" },
+
+    { country: "Amerika Birleşik Devletleri", name: "New York" },
+    { country: "Amerika Birleşik Devletleri", name: "Los Angeles" },
+    { country: "Amerika Birleşik Devletleri", name: "Chicago" },
+
+    { country: "İngiltere", name: "Londra" },
+    { country: "İngiltere", name: "Manchester" },
+    { country: "İngiltere", name: "Birmingham" },
+
+    { country: "Fransa", name: "Paris" },
+    { country: "Fransa", name: "Marsilya" },
+    { country: "Fransa", name: "Lyon" },
+
+    { country: "İtalya", name: "Roma" },
+    { country: "İtalya", name: "Milano" },
+    { country: "İtalya", name: "Napoli" },
+
+    { country: "İspanya", name: "Madrid" },
+    { country: "İspanya", name: "Barselona" },
+    { country: "İspanya", name: "Valensiya" },
+
+    { country: "Hollanda", name: "Amsterdam" },
+    { country: "Hollanda", name: "Rotterdam" },
+    { country: "Hollanda", name: "Utrecht" },
+
+    { country: "Kanada", name: "Toronto" },
+    { country: "Kanada", name: "Vancouver" },
+    { country: "Kanada", name: "Montreal" },
+
+    { country: "Avustralya", name: "Sidney" },
+    { country: "Avustralya", name: "Melbourne" },
+    { country: "Avustralya", name: "Brisbane" },
+  ];
+
+  const cities = cityData.map((c) => ({
+    countryId: countryMap.get(c.country),
+    name: c.name,
+    createdBy: 1,
+  }));
+
+  await Promise.all(cities.map((city) => cityService.createCity(city)));
+
+  log(`Dummy city records have been seeded successfully.`);
 }

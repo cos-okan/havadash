@@ -46,4 +46,17 @@ export default class CountryRepository extends BaseRepository {
   async delete(id) {
     return this.model.query().deleteById(id);
   }
+
+  async findByUniqueFieldsApartFromId({ name }, id) {
+    if (!name) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (name) builder.orWhere('name', name);
+      })
+      .first();
+  }
 }

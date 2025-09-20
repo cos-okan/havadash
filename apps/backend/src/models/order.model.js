@@ -14,12 +14,13 @@ class Order extends BaseModel {
     return {
       type: 'object',
       ...super.jsonSchema,
-      required: [...super.jsonSchema.required, 'customerId', 'deliveryAddressId', 'stateCode', 'orderDate'],
+      required: [...super.jsonSchema.required, 'orderNo', 'customerId', 'deliveryAddressId', 'stateCode', 'orderDate'],
       properties: {
         ...super.jsonSchema.properties,
         customerId: { type: 'integer' },
         deliveryAddressId: { type: 'integer' },
         stateCode: { type: 'integer' },
+        orderNo: { type: 'integer' },
         orderDate: { type: 'string', format: 'date-time' },
         weight: { type: ['number', 'null'] },
         notes: { type: 'string' },

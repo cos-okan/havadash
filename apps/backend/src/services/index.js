@@ -3,12 +3,18 @@ import AuthService from "./auth.service.js";
 import UserService from "./user.service.js";
 import CustomerService from "./customer.service.js";
 import DroneService from "./drone.service.js";
+import OrderService from "./order.service.js";
+import CountryService from "./country.service.js";
+import CityService from "./city.service.js";
 
 const mqttService = new MqttService();
 const authService = new AuthService();
 const userService = new UserService();
 const customerService = new CustomerService();
 const droneService = new DroneService();
+const orderService = new OrderService();
+const countryService = new CountryService();
+const cityService = new CityService();
 
 export { 
   mqttService,
@@ -16,4 +22,7 @@ export {
   userService,
   customerService,
   droneService,
+  orderService,
+  countryService,
+  cityService
 };

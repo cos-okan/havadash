@@ -12,6 +12,7 @@ export async function up(knex) {
     table.integer('customer_id').unsigned().notNullable().references('id').inTable('customers');
     table.integer('delivery_address_id').unsigned().notNullable().references('id').inTable('addresses');
     table.integer('state_code').unsigned().notNullable().references('code').inTable('prm_order_states');
+    table.integer('order_no').notNullable().unique();
     table.timestamp('order_date').notNullable();
     table.string('weight').nullable();
     table.text('notes').nullable();
