@@ -39,6 +39,8 @@ const config = {
       host: process.env.MQTT_HOST,
       port: process.env.MQTT_PORT,
       telemetry_topic: process.env.MQTT_TELEMETRY_DATA_TOPIC,
+      server_hb_topic: process.env.SERVER_HEARTBEATE_TOPIC,
+      server_hb_on: process.env.SERVER_HERTBEAT_ON,
     },
   },
 };

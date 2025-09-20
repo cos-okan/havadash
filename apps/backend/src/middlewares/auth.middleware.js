@@ -1,10 +1,16 @@
 import jwt from "jsonwebtoken";
-import { EXCLUDED_URLS, HEADERS, TokenNotFoundError, InvalidTokenError, ExpiredTokenError } from "@havadash/utils";
+import { 
+  EXCLUDED_URLS, 
+  TokenNotFoundError, 
+  InvalidTokenError, 
+  ExpiredTokenError 
+} from "@havadash/utils";
 import config from "../../config/app.config.js";
 
-const { jwtConf: jwtConf } = config.COMMON;
+const { jwtConf } = config.COMMON;
 
-const authMiddleware = async (req, res, next) => {
+const authMiddleware = (req, res, next) => {
+  // Whitelist (Auth gerektirmeyen URL'ler)
   if (EXCLUDED_URLS.some((url) => req.path.startsWith(url))) {
     return next();
   }
@@ -18,28 +24,17 @@ const authMiddleware = async (req, res, next) => {
 
     jwt.verify(token, jwtConf.jwtSecret, (err, user) => {
       if (err) {
-        return res.status(403).json({ message: "[Auth] Token geçersiz." });
+        if (err.name === "TokenExpiredError") {
+          return next(new ExpiredTokenError());
+        }
+        return next(new InvalidTokenError());
       }
       req.user = user;
       next();
     });
 
-    const decoded = jwt.decode(token);
-
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (decoded.exp < currentTime) {
-      throw new ExpiredTokenError();
-    }
-
-    next();
   } catch (err) {
-    if (err instanceof jwt.JsonWebTokenError) {
-      next(new InvalidTokenError());
-    } else if (err instanceof ExpiredTokenError || err instanceof TokenNotFoundError) {
-      next(err);
-    } else {
-      next(err);
-    }
+    next(err);
   }
 };
 
