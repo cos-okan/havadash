@@ -55,30 +55,25 @@ const ERROR_CODES = {
     TOKEN_NOT_FOUND: 'TOKEN_NOT_FOUND',
     INVALID_TOKEN: 'INVALID_TOKEN',
     EXPIRED_TOKEN: 'EXPIRED_TOKEN',
-
     USER_NOT_FOUND: 'USER_NOT_FOUND_ERROR',
     USER_ALREADY_EXIST: 'USER_ALREADY_EXIST_ERROR',
-
     CUSTOMER_NOT_FOUND: 'CUSTOMER_NOT_FOUND_ERROR',
     CUSTOMER_ALREADY_EXIST: 'CUSTOMER_ALREADY_EXIST_ERROR',
-
     DRONE_NOT_FOUND: 'DRONE_NOT_FOUND_ERROR',
     DRONE_ALREADY_EXIST: 'DRONE_ALREADY_EXIST_ERROR',
-
     ORDER_NOT_FOUND: 'ORDER_NOT_FOUND_ERROR',
     ORDER_ALREADY_EXIST: 'ORDER_ALREADY_EXIST_ERROR',
-
     COUNTRY_NOT_FOUND: 'COUNTRY_NOT_FOUND_ERROR',
     COUNTRY_ALREADY_EXIST: 'COUNTRY_ALREADY_EXIST_ERROR',
-
     CITY_NOT_FOUND: 'CITY_NOT_FOUND_ERROR',
     CITY_ALREADY_EXIST: 'CITY_ALREADY_EXIST_ERROR',
-
     ADDRESS_NOT_FOUND: 'ADDRESS_NOT_FOUND_ERROR',
-
     FLIGHT_NOT_FOUND: 'FLIGHT_NOT_FOUND_ERROR',
-
     FLIGH_LOCATION_NOT_FOUND: 'FLIGH_LOCATION_NOT_FOUND_ERROR',
+    TELEMETRY_DATA_NOT_FOUND: 'TELEMETRY_DATA_NOT_FOUND_ERROR',
+    ALARM_DATA_NOT_FOUND: 'ALARM_DATA_NOT_FOUND_ERROR',
+    DRONE_COMMAND_NOT_FOUND: 'DRONE_COMMAND_NOT_FOUND_ERROR',
+    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'CUSTOMER_ADDRESS_MAP_NOT_FOUND_ERROR'
 };
 
 const ERROR_MESSAGES = {
@@ -94,30 +89,25 @@ const ERROR_MESSAGES = {
     TOKEN_NOT_FOUND: '[Auth] Authorization header içinde token bulunamadı.',
     INVALID_TOKEN: '[Auth] Token geçersiz.',
     EXPIRED_TOKEN: '[Auth] Token süresi dolmuş.',
-
     USER_ALREADY_EXIST: 'Kullanıcı zaten mevcut.',
     USER_NOT_FOUND: 'Kullanıcı bulunamadı.',
-
     CUSTOMER_ALREADY_EXIST: 'Müşteri zaten tanımlı',
     CUSTOMER_NOT_FOUND: 'Müşteri bulunamadı.',
-
     DRONE_ALREADY_EXIST: 'Drone zaten tanımlı',
     DRONE_NOT_FOUND: 'Drone bulunamadı.',
-
     ORDER_NOT_FOUND: 'Sipariş bulunamadı.',
     ORDER_ALREADY_EXIST: 'Sipariş zaten tanımlı',
-
     COUNTRY_NOT_FOUND: 'Ülke bulunamadı.',
     COUNTRY_ALREADY_EXIST: 'Ülke zaten tanımlı',
-
     CITY_NOT_FOUND: 'İl bulunamadı.',
     CITY_ALREADY_EXIST: 'İl zaten tanımlı',
-
     ADDRESS_NOT_FOUND: 'İl bulunamadı.',
-
     FLIGHT_NOT_FOUND: 'Uçuş bulunamadı.',
-
-    FLIGH_LOCATION_NOT_FOUND: 'Uçuş konumu bulunamadı.'
+    FLIGH_LOCATION_NOT_FOUND: 'Uçuş konumu bulunamadı.',
+    TELEMETRY_DATA_NOT_FOUND: 'Telemetri verisi bulunamadı.',
+    ALARM_DATA_NOT_FOUND: 'Alarm verisi bulunamadı.',
+    DRONE_COMMAND_NOT_FOUND: 'Drone komutu bulunamadı.',
+    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 'Müşteri-adres bağlantısı bulunamadı.'
 };
 
 const ERROR_STATUS = {
@@ -133,30 +123,26 @@ const ERROR_STATUS = {
     TOKEN_NOT_FOUND: 401,
     INVALID_TOKEN: 403,
     EXPIRED_TOKEN: 401,
-    
+
     USER_NOT_FOUND: 404,
     USER_ALREADY_EXIST: 409,
-
     CUSTOMER_NOT_FOUND: 404,
     CUSTOMER_ALREADY_EXIST: 409,
-
     DRONE_NOT_FOUND: 404,
     DRONE_ALREADY_EXIST: 409,
-
     ORDER_NOT_FOUND: 404,
     ORDER_ALREADY_EXIST: 409,
-
     COUNTRY_NOT_FOUND: 404,
     COUNTRY_ALREADY_EXIST: 409,
-
     CITY_NOT_FOUND: 404,
     CITY_ALREADY_EXIST: 409,
-
     ADDRESS_NOT_FOUND: 404,
-
     FLIGHT_NOT_FOUND: 404,
-
     FLIGH_LOCATION_NOT_FOUND: 404,
+    TELEMETRY_DATA_NOT_FOUND: 404,
+    ALARM_DATA_NOT_FOUND: 404,
+    DRONE_COMMAND_NOT_FOUND: 404,
+    CUSTOMER_ADDRESS_MAP_NOT_FOUND: 404,
 };
 
 const MESSAGES = {
@@ -216,6 +202,30 @@ const MESSAGES = {
     FLIGHT_LOCATION_CREATED_SUCCESS: 'Uçuş konum başarıyla oluşturuldu.',
     FLIGHT_LOCATION_UPDATED_SUCCESS: 'Uçuş konum başarıyla güncellendi.',
     FLIGHT_LOCATION_DELETED_SUCCESS: 'Uçuş konum başarıyla silindi.',
+
+    TELEMETRY_DATA_FETCHED_SUCCESS: 'Telemetri verisi başarıyla getirildi.',
+    TELEMETRY_DATA_LIST_FETCHED_SUCCESS: 'Telemetri veri listesi başarıyla getirildi.',
+    TELEMETRY_DATA_CREATED_SUCCESS: 'Telemetri verisi başarıyla oluşturuldu.',
+    TELEMETRY_DATA_UPDATED_SUCCESS: 'Telemetri verisi başarıyla güncellendi.',
+    TELEMETRY_DATA_DELETED_SUCCESS: 'Telemetri verisi başarıyla silindi.',
+
+    ALARM_DATA_FETCHED_SUCCESS: 'Alarm verisi başarıyla getirildi.',
+    ALARM_DATA_LIST_FETCHED_SUCCESS: 'Alarm veri listesi başarıyla getirildi.',
+    ALARM_DATA_CREATED_SUCCESS: 'Alarm verisi başarıyla oluşturuldu.',
+    ALARM_DATA_UPDATED_SUCCESS: 'Alarm verisi başarıyla güncellendi.',
+    ALARM_DATA_DELETED_SUCCESS: 'Alarm verisi başarıyla silindi.',
+
+    DRONE_COMMAND_FETCHED_SUCCESS: 'Drone komutu başarıyla getirildi.',
+    DRONE_COMMANDS_FETCHED_SUCCESS: 'Drone komut listesi başarıyla getirildi.',
+    DRONE_COMMAND_CREATED_SUCCESS: 'Drone komutu başarıyla oluşturuldu.',
+    DRONE_COMMAND_UPDATED_SUCCESS: 'Drone komutu başarıyla güncellendi.',
+    DRONE_COMMAND_DELETED_SUCCESS: 'Drone komutu başarıyla silindi.',
+
+    CUSTOMER_ADDRESS_MAP_FETCHED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla getirildi.',
+    CUSTOMER_ADDRESS_MAPS_FETCHED_SUCCESS: 'Müşteri-adres bağlantı listesi başarıyla getirildi.',
+    CUSTOMER_ADDRESS_MAP_CREATED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla oluşturuldu.',
+    CUSTOMER_ADDRESS_MAP_UPDATED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla güncellendi.',
+    CUSTOMER_ADDRESS_MAP_DELETED_SUCCESS: 'Müşteri-adres bağlantısı başarıyla silindi.',
 };
 
 

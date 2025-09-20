@@ -9,6 +9,10 @@ import CityRoutes from "./city.routes.js";
 import AddressRoutes from "./address.routes.js";
 import FlightRoutes from "./flight.routes.js";
 import FlightLocationRoutes from "./flight-location.routes.js";
+import TelemetryDataRoutes from "./telemetry-data.routes.js";
+import AlarmDataRoutes from "./alarm-data.routes.js";
+import DroneCommandRoutes from "./drone-command.routes.js";
+import CustomerAddressMapRoutes from "./customer-address-map.routes.js";
 
 const mqttRoutes = new MqttRoutes();
 const authRoutes = new AuthRoutes();
@@ -21,6 +25,10 @@ const cityRoutes = new CityRoutes();
 const addressRoutes = new AddressRoutes();
 const flightRoutes = new FlightRoutes();
 const flightLocationRoutes = new FlightLocationRoutes();
+const telemetryDataRoutes = new TelemetryDataRoutes();
+const alarmDataRoutes = new AlarmDataRoutes();
+const droneCommandRoutes = new DroneCommandRoutes();
+const customerAddressMapRoutes = new CustomerAddressMapRoutes();
 
 export {
   mqttRoutes,
@@ -33,5 +41,9 @@ export {
   cityRoutes,
   addressRoutes,
   flightRoutes,
-  flightLocationRoutes
+  flightLocationRoutes,
+  telemetryDataRoutes,
+  alarmDataRoutes,
+  droneCommandRoutes,
+  customerAddressMapRoutes
 };

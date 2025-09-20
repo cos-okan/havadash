@@ -172,6 +172,30 @@ class FlightLocationNotFoundError extends NotFoundError {
   }
 }
 
+class TelemetryDataNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.TELEMETRY_DATA_NOT_FOUND, name = ERROR_CODES.TELEMETRY_DATA_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.TELEMETRY_DATA_NOT_FOUND, name, true, errors);
+  }
+}
+
+class AlarmDataNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.ALARM_DATA_NOT_FOUND, name = ERROR_CODES.ALARM_DATA_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.ALARM_DATA_NOT_FOUND, name, true, errors);
+  }
+}
+
+class DroneCommandNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.DRONE_COMMAND_NOT_FOUND, name = ERROR_CODES.DRONE_COMMAND_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.DRONE_COMMAND_NOT_FOUND, name, true, errors);
+  }
+}
+
+class CustomerAddressMapNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.CUSTOMER_ADDRESS_MAP_NOT_FOUND, name = ERROR_CODES.CUSTOMER_ADDRESS_MAP_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.CUSTOMER_ADDRESS_MAP_NOT_FOUND, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -190,5 +214,9 @@ export {
   CityAlreadyExistError,
   AddressNotFoundError,
   FlightNotFoundError,
-  FlightLocationNotFoundError
+  FlightLocationNotFoundError,
+  TelemetryDataNotFoundError,
+  AlarmDataNotFoundError,
+  DroneCommandNotFoundError,
+  CustomerAddressMapNotFoundError
 };
