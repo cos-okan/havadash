@@ -23,7 +23,9 @@ import {
   orderRoutes, 
   countryRoutes,
   cityRoutes,
-  addressRoutes
+  addressRoutes,
+  flightRoutes,
+  flightLocationRoutes
 } from './routes/index.js';
 
 import { fileURLToPath } from 'url';
@@ -58,6 +60,8 @@ app.use(`${config.SERVICE.endpoint_prefix}/orders`, orderRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/countries`, countryRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/cities`, cityRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/addresses`, addressRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/flights`, flightRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/flightLocations`, flightLocationRoutes.getRouter());
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);

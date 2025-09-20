@@ -24,7 +24,7 @@ export default class OrderRepository extends BaseRepository{
   }
 
   async findByOrderNo(orderNo) {
-    return this.model.query().where("orderNo", orderNo).first();
+    return this.model.query().where("order_no", orderNo).first();
   }
 
 
@@ -48,7 +48,7 @@ export default class OrderRepository extends BaseRepository{
       .query()
       .where('id', '!=', id)
       .andWhere((builder) => {
-        if (orderNo) builder.orWhere('orderNo', orderNo);
+        if (orderNo) builder.orWhere('order_no', orderNo);
       })
       .first();
   }

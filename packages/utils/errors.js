@@ -160,6 +160,18 @@ class AddressNotFoundError extends NotFoundError {
   }
 }
 
+class FlightNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.FLIGHT_NOT_FOUND, name = ERROR_CODES.FLIGHT_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.FLIGHT_NOT_FOUND, name, true, errors);
+  }
+}
+
+class FlightLocationNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.FLIGH_LOCATION_NOT_FOUND, name = ERROR_CODES.FLIGH_LOCATION_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.FLIGH_LOCATION_NOT_FOUND, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -176,5 +188,7 @@ export {
   CountryAlreadyExistError,
   CityNotFoundError,
   CityAlreadyExistError,
-  AddressNotFoundError
+  AddressNotFoundError,
+  FlightNotFoundError,
+  FlightLocationNotFoundError
 };

@@ -6,6 +6,8 @@ import OrderController from "./order.controller.js";
 import CountryController from "./country.controller.js";
 import CityController from "./city.controller.js";
 import AddressController from "./address.controller.js";
+import FlightController from "./flight.controller.js";
+import FlightLocationController from "./flight-location.controller.js";
 
 const authController = new AuthController();
 const userController = new UserController();
@@ -15,7 +17,8 @@ const orderController = new OrderController();
 const countryController = new CountryController();
 const cityController = new CityController();
 const addressController = new AddressController();
-
+const flightController = new FlightController();
+const flightLocationController = new FlightLocationController();
 
 export { 
   authController,
@@ -25,5 +28,7 @@ export {
   orderController,
   countryController,
   cityController,
-  addressController
+  addressController,
+  flightController,
+  flightLocationController
 };

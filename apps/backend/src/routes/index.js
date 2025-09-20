@@ -7,6 +7,8 @@ import OrderRoutes from "./order.routes.js";
 import CountryRoutes from "./country.routes.js";
 import CityRoutes from "./city.routes.js";
 import AddressRoutes from "./address.routes.js";
+import FlightRoutes from "./flight.routes.js";
+import FlightLocationRoutes from "./flight-location.routes.js";
 
 const mqttRoutes = new MqttRoutes();
 const authRoutes = new AuthRoutes();
@@ -17,6 +19,8 @@ const orderRoutes = new OrderRoutes();
 const countryRoutes = new CountryRoutes();
 const cityRoutes = new CityRoutes();
 const addressRoutes = new AddressRoutes();
+const flightRoutes = new FlightRoutes();
+const flightLocationRoutes = new FlightLocationRoutes();
 
 export {
   mqttRoutes,
@@ -27,5 +31,7 @@ export {
   orderRoutes,
   countryRoutes,
   cityRoutes,
-  addressRoutes
+  addressRoutes,
+  flightRoutes,
+  flightLocationRoutes
 };

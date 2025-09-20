@@ -7,6 +7,8 @@ import OrderService from "./order.service.js";
 import CountryService from "./country.service.js";
 import CityService from "./city.service.js";
 import AddressService from "./address.service.js";
+import FlightService from "./flight.service.js";
+import FlightLocationService from "./flight-location.service.js";
 
 const mqttService = new MqttService();
 const authService = new AuthService();
@@ -17,6 +19,8 @@ const orderService = new OrderService();
 const countryService = new CountryService();
 const cityService = new CityService();
 const addressService = new AddressService();
+const flightService = new FlightService();
+const flightLocationService = new FlightLocationService();
 
 export { 
   mqttService,
@@ -27,5 +31,7 @@ export {
   orderService,
   countryService,
   cityService,
-  addressService
+  addressService,
+  flightService,
+  flightLocationService
 };
