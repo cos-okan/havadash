@@ -154,6 +154,12 @@ class CityAlreadyExistError extends ConflictError {
   }
 }
 
+class AddressNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.ADDRESS_NOT_FOUND, name = ERROR_CODES.ADDRESS_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.ADDRESS_NOT_FOUND, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -169,5 +175,6 @@ export {
   CountryNotFoundError,
   CountryAlreadyExistError,
   CityNotFoundError,
-  CityAlreadyExistError
+  CityAlreadyExistError,
+  AddressNotFoundError
 };

@@ -5,6 +5,7 @@ import DroneController from "./drone.controller.js";
 import OrderController from "./order.controller.js";
 import CountryController from "./country.controller.js";
 import CityController from "./city.controller.js";
+import AddressController from "./address.controller.js";
 
 const authController = new AuthController();
 const userController = new UserController();
@@ -13,6 +14,8 @@ const droneController = new DroneController();
 const orderController = new OrderController();
 const countryController = new CountryController();
 const cityController = new CityController();
+const addressController = new AddressController();
+
 
 export { 
   authController,
@@ -21,5 +24,6 @@ export {
   droneController,
   orderController,
   countryController,
-  cityController
+  cityController,
+  addressController
 };

@@ -23,6 +23,7 @@ import {
   orderRoutes, 
   countryRoutes,
   cityRoutes,
+  addressRoutes
 } from './routes/index.js';
 
 import { fileURLToPath } from 'url';
@@ -56,6 +57,7 @@ app.use(`${config.SERVICE.endpoint_prefix}/drones`, droneRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/orders`, orderRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/countries`, countryRoutes.getRouter());
 app.use(`${config.SERVICE.endpoint_prefix}/cities`, cityRoutes.getRouter());
+app.use(`${config.SERVICE.endpoint_prefix}/addresses`, addressRoutes.getRouter());
 
 app.use(errorMiddleware);
 app.use(responseMiddleware);
