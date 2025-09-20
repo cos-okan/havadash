@@ -2,69 +2,70 @@ import { userRepository } from "../repositories/index.js";
 import { UserNotFoundError, UserAlreadyExistError } from "@havadash/utils";
 import bcrypt from "bcrypt";
 
-export async function getUsers(queryParams) {
-  return userRepository.findAllWithQuery(queryParams);
-}
-
-export async function getUser(id, options = {}) {
-  const { include } = options;
-
-  const user = await userRepository.findById(id, include);
-
-  if (!user) {
-    throw new UserNotFoundError();
+export default class UserService {
+  constructor(repo = userRepository) {
+    this.userRepository = repo;
   }
 
-  return user;
-}
-
-export async function createUser(userData) {
-  const { email } = userData;
-
-  const existingUser = await userRepository.findByEmail(email);
-  
-  if (existingUser) {
-    throw new UserAlreadyExistError(`'${email}' mailine sahip kullanıcı zaten mevcut.`);
+  async getUsers(queryParams) {
+    return this.userRepository.findAllWithQuery(queryParams);
   }
 
-  const passwordHash = await bcrypt.hash(userData.password, 10);
+  async getUser(id, options = {}) {
+    const { include } = options;
 
-  const userToInsert = {
-    ...userData,
-    passwordHash,
-  };
-  delete userToInsert.password;
+    const user = await this.userRepository.findById(id, include);
+    if (!user) {
+      throw new UserNotFoundError();
+    }
 
-  const newUser = await userRepository.create(userToInsert);
-
-  return newUser;
-}
-
-export async function updateUser(id, updateData) {
-  const userToUpdate = await userRepository.findById(id);
-  if (!userToUpdate) {
-    throw new UserNotFoundError();
+    return user;
   }
 
-  const { email } = updateData;
+  async createUser(userData) {
+    const { email, password } = userData;
 
-  const conflictingUser = await userRepository.findByUniqueFieldsApartFromId(email);
-  
-  if (conflictingUser) {
-    throw new UserAlreadyExistError(`'${email}' mailine sahip başka kullanıcı mevcut.`);
+    const existingUser = await this.userRepository.findByEmail(email);
+    if (existingUser) {
+      throw new UserAlreadyExistError(`'${email}' mailine sahip kullanıcı zaten mevcut.`);
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const userToInsert = {
+      ...userData,
+      passwordHash,
+    };
+    delete userToInsert.password;
+
+    const newUser = await this.userRepository.create(userToInsert);
+    return newUser;
   }
 
-  const updatedUser = await userRepository.update(id, userData);
+  async updateUser(id, updateData) {
+    const userToUpdate = await this.userRepository.findById(id);
+    if (!userToUpdate) {
+      throw new UserNotFoundError();
+    }
 
-  return updatedUser;
-}
+    const { email } = updateData;
+    if (email) {
+      const conflictingUser = await this.userRepository.findByUniqueFieldsApartFromId(email, id);
+      if (conflictingUser) {
+        throw new UserAlreadyExistError(`'${email}' mailine sahip başka kullanıcı mevcut.`);
+      }
+    }
 
-export async function deleteUser(id) {
-  const userToDelete = await userRepository.findById(id);
-
-  if (!userToDelete) {
-    throw new UserNotFoundError();
+    const updatedUser = await this.userRepository.update(id, updateData);
+    return updatedUser;
   }
 
-  await userRepository.delete(id);
+  async deleteUser(id) {
+    const userToDelete = await this.userRepository.findById(id);
+    if (!userToDelete) {
+      throw new UserNotFoundError();
+    }
+
+    await this.userRepository.delete(id);
+  }
 }

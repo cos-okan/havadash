@@ -28,7 +28,7 @@ export default class CustomerRepository extends BaseRepository {
   }
 
   async findByPhoneNumber(phoneNumber) {
-    return this.model.query().where("phoneNumber", phoneNumber).first();
+    return this.model.query().where("phone_number", phoneNumber).first();
   }
 
   async findByEmail(email) {
@@ -45,5 +45,18 @@ export default class CustomerRepository extends BaseRepository {
 
   async delete(id) {
     return this.model.query().deleteById(id);
+  }
+
+  async findByUniqueFieldsApartFromId({ phoneNumber }, id) {
+    if (!phoneNumber) {
+      return undefined;
+    }
+    return this.model
+      .query()
+      .where('id', '!=', id)
+      .andWhere((builder) => {
+        if (phoneNumber) builder.orWhere('phone_number', phoneNumber);
+      })
+      .first();
   }
 }

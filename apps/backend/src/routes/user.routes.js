@@ -1,16 +1,21 @@
 import express from "express";
-import * as userController from "../controllers/user.controller.js";
+import { userController } from "../controllers/index.js";
 
-const router = express.Router();
+export default class UserRoutes {
+  constructor() {
+    this.router = express.Router();
+    this.registerRoutes();
+  }
 
-router.get("/", userController.getUsers);
+  registerRoutes() {
+    this.router.get("/", userController.getUsers);
+    this.router.get("/:id", userController.getUser);
+    this.router.post("/", userController.createUser);
+    this.router.patch("/:id", userController.updateUser);
+    this.router.delete("/:id", userController.deleteUser);
+  }
 
-router.get("/:id", userController.getUser);
-
-router.post("/", userController.createUser);
-
-router.patch("/:id", userController.updateUser);
-
-router.delete("/:id", userController.deleteUser);
-
-export default router;
+  getRouter() {
+    return this.router;
+  }
+}
