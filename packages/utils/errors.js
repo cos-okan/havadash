@@ -106,6 +106,18 @@ class CustomerAlreadyExistError extends ConflictError {
   }
 }
 
+class DroneNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.DRONE_NOT_FOUND, name = ERROR_CODES.DRONE_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.DRONE_NOT_FOUND, name, true, errors);
+  }
+}
+
+class DroneAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.DRONE_ALREADY_EXIST, name = ERROR_CODES.DRONE_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.DRONE_ALREADY_EXIST, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
@@ -114,4 +126,6 @@ export {
   UserAlreadyExistError,
   CustomerNotFoundError,
   CustomerAlreadyExistError,
+  DroneNotFoundError,
+  DroneAlreadyExistError
 };

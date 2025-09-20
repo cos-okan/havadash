@@ -59,6 +59,8 @@ const ERROR_CODES = {
     USER_ALREADY_EXIST: 'USER_ALREADY_EXIST_ERROR',
     CUSTOMER_NOT_FOUND: 'CUSTOMER_NOT_FOUND_ERROR',
     CUSTOMER_ALREADY_EXIST: 'CUSTOMER_ALREADY_EXIST_ERROR',
+    DRONE_NOT_FOUND: 'DRONE_NOT_FOUND_ERROR',
+    DRONE_ALREADY_EXIST: 'DRONE_ALREADY_EXIST_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -78,6 +80,8 @@ const ERROR_MESSAGES = {
     USER_NOT_FOUND: 'Kullanıcı bulunamadı.',
     CUSTOMER_ALREADY_EXIST: 'Müşteri zaten tanımlı',
     CUSTOMER_NOT_FOUND: 'Müşteri bulunamadı.',
+    DRONE_ALREADY_EXIST: 'Drone zaten tanımlı',
+    DRONE_NOT_FOUND: 'Drone bulunamadı.',
 };
 
 const ERROR_STATUS = {
@@ -97,21 +101,31 @@ const ERROR_STATUS = {
     USER_ALREADY_EXIST: 409,
     CUSTOMER_NOT_FOUND: 404,
     CUSTOMER_ALREADY_EXIST: 409,
+    DRONE_NOT_FOUND: 404,
+    DRONE_ALREADY_EXIST: 409,
 };
 
 const MESSAGES = {
     USER_LOGIN_SUCCESS: 'Başarıyla giriş yapıldı.',
     LOGOUT_SUCCESS: 'Oturum sonlandırıldı.',
+
     USER_FETCHED_SUCCESS: 'Kullanıcı başarıyla getirildi.',
     USERS_FETCHED_SUCCESS: 'Kullanıcılar başarıyla getirildi.',
     USER_CREATED_SUCCESS: 'Kullanıcı başarıyla oluşturuldu.',
     USER_UPDATED_SUCCESS: 'Kullanıcı başarıyla güncellendi.',
     USER_DELETED_SUCCESS: 'Kullanıcı başarıyla silindi.',
+
     CUSTOMER_FETCHED_SUCCESS: 'Müşteri başarıyla getirildi.',
     CUSTOMERS_FETCHED_SUCCESS: 'Müşteriler başarıyla getirildi.',
     CUSTOMER_CREATED_SUCCESS: 'Müşteri başarıyla oluşturuldu.',
     CUSTOMER_UPDATED_SUCCESS: 'Müşteri başarıyla güncellendi.',
     CUSTOMER_DELETED_SUCCESS: 'Müşteri başarıyla silindi.',
+
+    DRONE_FETCHED_SUCCESS: 'Drone başarıyla getirildi.',
+    DRONES_FETCHED_SUCCESS: 'Drone listesi başarıyla getirildi.',
+    DRONE_CREATED_SUCCESS: 'Drone başarıyla oluşturuldu.',
+    DRONE_UPDATED_SUCCESS: 'Drone başarıyla güncellendi.',
+    DRONE_DELETED_SUCCESS: 'Drone başarıyla silindi.',
 };
 
 

@@ -59,4 +59,8 @@ export default class CustomerService {
 
     await this.customerRepository.delete(id);
   }
+
+  async getCounts(){
+    return this.customerRepository.countAll();
+  }
 }

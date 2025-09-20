@@ -68,4 +68,8 @@ export default class UserService {
 
     await this.userRepository.delete(id);
   }
+
+  async getCounts(){
+    return this.userRepository.countAll();
+  }
 }

@@ -10,8 +10,8 @@ export async function up(knex) {
     table.integer('updated_by').nullable();
     table.timestamps(true, true);
     table.integer('flight_id').unsigned().notNullable().references('id').inTable('flights');
-    table.decimal('latitude').notNullable();
-    table.decimal('longitude').notNullable();
+    table.decimal('latitude', 10, 7).notNullable();
+    table.decimal('longitude', 10, 7).notNullable();
     table.decimal('altitude').notNullable();
     table.timestamp('timestamp').notNullable();
   });
