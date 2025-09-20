@@ -94,10 +94,24 @@ class UserAlreadyExistError extends ConflictError {
   }
 }
 
+class CustomerNotFoundError extends NotFoundError {
+  constructor(message = ERROR_MESSAGES.CUSTOMER_NOT_FOUND, name = ERROR_CODES.CUSTOMER_NOT_FOUND, errors = null) {
+    super(message, ERROR_STATUS.CUSTOMER_NOT_FOUND, name, true, errors);
+  }
+}
+
+class CustomerAlreadyExistError extends ConflictError {
+  constructor(message = ERROR_MESSAGES.CUSTOMER_ALREADY_EXIST, name = ERROR_CODES.CUSTOMER_ALREADY_EXIST, errors = null) {
+    super(message, ERROR_STATUS.CUSTOMER_ALREADY_EXIST, name, true, errors);
+  }
+}
+
 export { 
   TokenNotFoundError,
   InvalidTokenError,
   ExpiredTokenError,
   UserNotFoundError,
-  UserAlreadyExistError
+  UserAlreadyExistError,
+  CustomerNotFoundError,
+  CustomerAlreadyExistError,
 };

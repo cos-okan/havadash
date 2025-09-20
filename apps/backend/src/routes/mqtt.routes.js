@@ -1,21 +1,32 @@
 import express from "express";
-import { publishMessage } from "../services/mqtt.service.js";
+import { mqttService } from "../services/index.js";
 
-const router = express.Router();
-
-router.post("/publish", (req, res) => {
-  const { topic, message } = req.body;
-
-  if (!topic || !message) {
-    return res.status(400).json({
-      success: false,
-      error: "topic and message required",
-    });
+export default class MqttRoutes {
+  constructor() {
+    this.router = express.Router();
+    this.registerRoutes();
   }
 
-  publishMessage(topic, message);
+  registerRoutes() {
+    this.router.post("/publish", this.publishMessage.bind(this));
+  }
 
-  res.json({ success: true, topic, message });
-});
+  publishMessage(req, res) {
+    const { topic, message } = req.body;
 
-export default router;
+    if (!topic || !message) {
+      return res.status(400).json({
+        success: false,
+        error: "topic and message required",
+      });
+    }
+
+    mqttService.publishMessage(topic, message);
+
+    res.json({ success: true, topic, message });
+  }
+
+  getRouter() {
+    return this.router;
+  }
+}

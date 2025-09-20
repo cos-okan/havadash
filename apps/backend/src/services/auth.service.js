@@ -3,37 +3,43 @@ import bcrypt from "bcrypt";
 import { userRepository } from "../repositories/index.js";
 import config from "../../config/app.config.js";
 
-const { jwtConf: jwtConf } = config.COMMON;
+const { jwtConf } = config.COMMON;
 
-export async function login(email, password) {
-  const user = await userRepository.findByEmail(email);
+export default class AuthService {
+  constructor(userRepo = userRepository) {
+    this.userRepository = userRepo;
+    this.jwtSecret = jwtConf.jwtSecret;
+    this.jwtExpiresIn = jwtConf.jwtExpiresIn;
+  }
 
-  if (!user) throw new Error("Invalid email or password");
+  async login(email, password) {
+    const user = await this.userRepository.findByEmail(email);
 
-  const validPassword = await bcrypt.compare(password, user.passwordHash);
-  if (!validPassword) throw new Error("Invalid email or password");
+    if (!user) throw new Error("Invalid email or password");
 
-  const expiresIn = jwtConf.jwtExpiresIn;
+    const validPassword = await bcrypt.compare(password, user.passwordHash);
+    if (!validPassword) throw new Error("Invalid email or password");
 
-  const token = jwt.sign({ id: user.id, email: user.email }, jwtConf.jwtSecret, {
-    expiresIn: expiresIn,
-  });
-    
-  const decoded = jwt.decode(token);
-  const now = Math.floor(Date.now() / 1000);
-  const secondsLeft = decoded.exp - now;
+    const token = jwt.sign({ id: user.id, email: user.email }, this.jwtSecret, {
+      expiresIn: this.jwtExpiresIn,
+    });
 
-  return { user, token, expiresIn: secondsLeft };
-}
+    const decoded = jwt.decode(token);
+    const now = Math.floor(Date.now() / 1000);
+    const secondsLeft = decoded.exp - now;
 
-export async function logout(user) {
+    return { user, token, expiresIn: secondsLeft };
+  }
+
+  async logout(user) {
     // Stateless JWT logout: sadece client tarafında token silinir
-    // Eğer ileride blacklist uygulanacaksa, buraya DB/Redis kaydı eklenebilir
+    // İleride blacklist uygulanacaksa, buraya DB/Redis kaydı eklenebilir
     return true;
   }
 
-export async function getMe(user) {
-  const foundUser = await userRepository.findById(user.id)
-  if (!foundUser) throw new Error("User not found");
-  return foundUser;
+  async getMe(user) {
+    const foundUser = await this.userRepository.findById(user.id);
+    if (!foundUser) throw new Error("User not found");
+    return foundUser;
+  }
 }

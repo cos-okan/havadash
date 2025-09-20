@@ -57,6 +57,8 @@ const ERROR_CODES = {
     EXPIRED_TOKEN: 'EXPIRED_TOKEN',
     USER_NOT_FOUND: 'USER_NOT_FOUND_ERROR',
     USER_ALREADY_EXIST: 'USER_ALREADY_EXIST_ERROR',
+    CUSTOMER_NOT_FOUND: 'CUSTOMER_NOT_FOUND_ERROR',
+    CUSTOMER_ALREADY_EXIST: 'CUSTOMER_ALREADY_EXIST_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -74,6 +76,8 @@ const ERROR_MESSAGES = {
     EXPIRED_TOKEN: '[Auth] Token süresi dolmuş.',
     USER_ALREADY_EXIST: 'Kullanıcı zaten mevcut.',
     USER_NOT_FOUND: 'Kullanıcı bulunamadı.',
+    CUSTOMER_ALREADY_EXIST: 'Müşteri zaten tanımlı',
+    CUSTOMER_NOT_FOUND: 'Müşteri bulunamadı.',
 };
 
 const ERROR_STATUS = {
@@ -91,6 +95,8 @@ const ERROR_STATUS = {
     EXPIRED_TOKEN: 401,
     USER_NOT_FOUND: 404,
     USER_ALREADY_EXIST: 409,
+    CUSTOMER_NOT_FOUND: 404,
+    CUSTOMER_ALREADY_EXIST: 409,
 };
 
 const MESSAGES = {
@@ -101,6 +107,11 @@ const MESSAGES = {
     USER_CREATED_SUCCESS: 'Kullanıcı başarıyla oluşturuldu.',
     USER_UPDATED_SUCCESS: 'Kullanıcı başarıyla güncellendi.',
     USER_DELETED_SUCCESS: 'Kullanıcı başarıyla silindi.',
+    CUSTOMER_FETCHED_SUCCESS: 'Müşteri başarıyla getirildi.',
+    CUSTOMERS_FETCHED_SUCCESS: 'Müşteriler başarıyla getirildi.',
+    CUSTOMER_CREATED_SUCCESS: 'Müşteri başarıyla oluşturuldu.',
+    CUSTOMER_UPDATED_SUCCESS: 'Müşteri başarıyla güncellendi.',
+    CUSTOMER_DELETED_SUCCESS: 'Müşteri başarıyla silindi.',
 };
 
 
