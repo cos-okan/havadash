@@ -73,6 +73,8 @@ const ERROR_CODES = {
 
     CITY_NOT_FOUND: 'CITY_NOT_FOUND_ERROR',
     CITY_ALREADY_EXIST: 'CITY_ALREADY_EXIST_ERROR',
+
+    ADDRESS_NOT_FOUND: 'ADDRESS_NOT_FOUND_ERROR',
 };
 
 const ERROR_MESSAGES = {
@@ -106,6 +108,8 @@ const ERROR_MESSAGES = {
 
     CITY_NOT_FOUND: 'İl bulunamadı.',
     CITY_ALREADY_EXIST: 'İl zaten tanımlı',
+
+    ADDRESS_NOT_FOUND: 'İl bulunamadı.',
 };
 
 const ERROR_STATUS = {
@@ -139,6 +143,8 @@ const ERROR_STATUS = {
 
     CITY_NOT_FOUND: 404,
     CITY_ALREADY_EXIST: 409,
+
+    ADDRESS_NOT_FOUND: 404,
 };
 
 const MESSAGES = {
@@ -180,6 +186,12 @@ const MESSAGES = {
     CITY_CREATED_SUCCESS: 'İl başarıyla oluşturuldu.',
     CITY_UPDATED_SUCCESS: 'İl başarıyla güncellendi.',
     CITY_DELETED_SUCCESS: 'İl başarıyla silindi.',
+
+    ADDRESS_FETCHED_SUCCESS: 'Adres başarıyla getirildi.',
+    ADDRESSES_FETCHED_SUCCESS: 'Adres listesi başarıyla getirildi.',
+    ADDRESS_CREATED_SUCCESS: 'Adres başarıyla oluşturuldu.',
+    ADDRESS_UPDATED_SUCCESS: 'Adres başarıyla güncellendi.',
+    ADDRESS_DELETED_SUCCESS: 'Adres başarıyla silindi.',
 };
 
 
