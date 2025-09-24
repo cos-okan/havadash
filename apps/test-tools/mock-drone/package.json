@@ -1,0 +1,16 @@
+{
+  "name": "mock-drone",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mock-drone.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^5.14.1"
+  }
+}

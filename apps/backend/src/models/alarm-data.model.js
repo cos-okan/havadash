@@ -14,11 +14,11 @@ class AlarmData extends BaseModel {
     return {
       type: 'object',
       ...super.jsonSchema,
-      required: [...super.jsonSchema.required, 'flightId', 'droneId', 'typeCode', 'severityCode', 'message', 'timestamp'],
+      required: [...super.jsonSchema.required, 'droneId', 'typeCode', 'severityCode', 'timestamp'],
       properties: {
         ...super.jsonSchema.properties,
-        flightId: { type: 'integer' },
         droneId: { type: 'integer' },
+        flightId: { type: ['integer', 'null'] },
         typeCode: { type: 'integer' },
         severityCode: { type: 'integer' },
         latitude: { type: ['number', 'null'] },

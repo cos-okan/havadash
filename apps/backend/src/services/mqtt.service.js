@@ -1,19 +1,30 @@
 import mqtt from "mqtt";
 import config from "../../config/app.config.js";
 import { log } from '../utils/logger.js';
+import { EventEmitter } from "events";
+import { telemetryDataRepository, droneCommandRepository, droneRepository, flightRepository } from "../repositories/index.js";
+import { CommandStateEnum, FlightStateEnum, USERS } from "@havadash/utils";
 
 const { mosquitto } = config.INFRA;
 
-export default class MqttService {
+let instance = null;
+
+export default class MqttService extends EventEmitter {
   constructor() {
+    super();
+    if (instance) return instance;
+    instance = this;
+
     this.brokerUrl = `mqtt://${mosquitto.host}:${mosquitto.port}`;
     this.client = null;
     this.connect();
+
+    return instance;
   }
 
   connect() {
     this.client = mqtt.connect(this.brokerUrl, {
-      clientId: "backend-" + Math.random().toString(16).substr(2, 8),
+      clientId: "havadash-backend",
       clean: true,
       connectTimeout: 4000,
       reconnectPeriod: 1000,
@@ -24,8 +35,12 @@ export default class MqttService {
       this.subscribe(mosquitto.telemetry_topic);
     });
 
-    this.client.on("message", (topic, message) => {
-      this.handleMessage(topic, message);
+    this.client.on("message", async (topic, message) => {
+      try {
+        await this.handleMessage(topic, message);
+      } catch (err) {
+        console.error("Error handling MQTT message:", err);
+      }
     });
 
     this.client.on("error", (err) => {
@@ -43,11 +58,78 @@ export default class MqttService {
     });
   }
 
-  handleMessage(topic, message) {
-    const payload = message.toString();
-    console.log(`Received on ${topic}: ${payload}`);
-    // Burada backend logic’ine yönlendirebilirsin
-    // Örneğin: database’e kaydetmek veya event emit etmek
+  async handleMessage(topic, message) {
+    try {
+      const payload = JSON.parse(message.toString());
+
+      const [, droneCode, subtopic] = topic.split("/");
+
+      const drone = await droneRepository.findByCode(droneCode);
+      if (!drone) {
+        log(`MqttService.handleMessage - Undefined drone : ${droneCode}`);
+        return;
+      }
+
+      const params = {
+        filter: {
+          "flights.drone_id": drone.id,
+          "flights.state_code": FlightStateEnum.IN_PROGRESS,
+        }
+      };
+
+      const flights = await flightRepository.findAllWithQuery(params);
+      const flight = flights?.[0] || null;
+
+      if (subtopic === "telemetry") {
+        const telemetryData = {
+          createdBy: USERS.SYSTEM_USER,
+          droneId: drone.id,
+          flightId: flight ? flight.id : null,
+          latitude: payload.latitude,
+          longitude: payload.longitude,
+          altitude: payload.altitude,
+          speed: payload.speed,
+          batteryLevel: payload.batteryLevel,
+          timestamp: new Date().toISOString(),
+        }
+        await telemetryDataRepository.create(telemetryData);
+        this.emit("telemetry", { droneCode, telemetryData });
+        log(`Telemetry processed from ${topic}`);
+      } 
+      else if (subtopic === "alarm") {
+        // TODO: To be implemented
+      }
+
+    } catch (err) {
+      console.error("Invalid message:", err.message);
+    }
+  }
+
+  async publishDroneCommand(droneCode, payload) {
+    const drone = await droneRepository.findByCode(droneCode);
+    if (!drone) {
+      log(`MqttService.handleMessage - Undefined drone : ${droneCode}`);
+      return;
+    }
+
+    const commandData = {
+      createdBy: USERS.SYSTEM_USER,
+      droneId: drone.id,
+      typeCode: payload.typeCode,
+      stateCode: CommandStateEnum.PENDING,
+      timestamp: new Date().toISOString(),
+      params: payload.params
+    }
+    const newCommandData = await droneCommandRepository.create(commandData);
+
+    const topic = mosquitto.drone_command_topic.replace("droneCode", droneCode);
+    this.publish(topic, payload);
+
+    const updateCommandData = {
+      updatedBy: USERS.SYSTEM_USER,
+      stateCode: CommandStateEnum.SENT
+    };
+    droneCommandRepository.update(newCommandData.id, updateCommandData);
   }
 
   publish(topic, payload, options = { qos: 1, retain: true }) {
@@ -56,7 +138,7 @@ export default class MqttService {
       if (err) {
         console.error("Publish error:", err);
       } else {
-        console.log(`Message sent to ${topic}: ${message}`);
+        log(`Message sent to ${topic}: ${message}`);
       }
     });
   }

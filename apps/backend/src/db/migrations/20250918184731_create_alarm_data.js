@@ -9,8 +9,8 @@ export async function up(knex) {
     table.integer('created_by').notNullable();
     table.integer('updated_by').nullable();
     table.timestamps(true, true);
-    table.integer('flight_id').unsigned().notNullable().references('id').inTable('flights');
     table.integer('drone_id').unsigned().notNullable().references('id').inTable('drones');
+    table.integer('flight_id').nullable().references('id').inTable('flights');
     table.integer('type_code').unsigned().notNullable().references('code').inTable('prm_alarm_types');
     table.integer('severity_code').unsigned().notNullable().references('code').inTable('prm_alarm_severities');
     table.decimal('latitude', 10, 7).nullable();
