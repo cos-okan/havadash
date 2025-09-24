@@ -14,11 +14,11 @@ class TelemetryData extends BaseModel {
     return {
       type: 'object',
       ...super.jsonSchema,
-      required: [...super.jsonSchema.required, 'flightId', 'droneId', 'timestamp'],
+      required: [...super.jsonSchema.required, 'droneId', 'timestamp'],
       properties: {
         ...super.jsonSchema.properties,
-        flightId: { type: 'integer' },
         droneId: { type: 'integer' },
+        flightId: { type: ['integer', 'null'] },
         latitude: { type: ['number', 'null'] },
         longitude: { type: ['number', 'null'] },
         altitude: { type: ['number', 'null'] },

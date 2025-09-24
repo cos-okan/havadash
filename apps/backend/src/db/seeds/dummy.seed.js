@@ -40,7 +40,17 @@ async function seedUsers() {
 
   log('Seeding dummy user records...');
 
-  const userData = {
+  const systemUser = {
+    createdBy: 1,
+    email: "system@havadash.com",
+    password: "System1234*",
+    username: "System",
+    roleCode: RoleEnum.SYSTEM,
+  };
+  
+  await userService.createUser(systemUser); 
+
+  const adminUser = {
     createdBy: 1,
     email: "admin@havadash.com",
     password: "Admin1234*",
@@ -48,7 +58,7 @@ async function seedUsers() {
     roleCode: RoleEnum.ADMIN,
   };
   
-  await userService.createUser(userData); 
+  await userService.createUser(adminUser); 
 
   log(`Dummy user records have been seeded successfully.`);
 }

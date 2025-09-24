@@ -7,8 +7,8 @@ const { mosquitto } = config.INFRA;
 const ENABLE_HEARTBEAT = mosquitto.server_hb_on === "true"
 
 if (ENABLE_HEARTBEAT) {
-  cron.schedule("*/10 * * * * *", () => {
-    mqttService.publishMessage(mosquitto.server_hb_topic, JSON.stringify({
+  cron.schedule(`*/${mosquitto.server_hb_period} * * * * *`, () => {
+    mqttService.publish(mosquitto.server_hb_topic, JSON.stringify({
       alive: true,
       ts: Date.now(),
     }));

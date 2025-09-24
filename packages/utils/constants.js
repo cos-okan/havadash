@@ -7,15 +7,15 @@ const EXCLUDED_URLS = [
 ];
 
 const RESPONSE_STATUS = {
-    SUCCESS: 'success',
-    ERROR: 'error',
+  SUCCESS: 'success',
+  ERROR: 'error',
 };
 
 const HEADERS = {
-    AUTHORIZATION: 'authorization',
-    RETRYCOUNT: "x-retry-count",
-    CONTENT_TYPE: 'Content-Type',
-    CONTENT_DISPOSITION: 'Content-Disposition',
+  AUTHORIZATION: 'authorization',
+  RETRYCOUNT: "x-retry-count",
+  CONTENT_TYPE: 'Content-Type',
+  CONTENT_DISPOSITION: 'Content-Disposition',
 };
 
 const HTTP_STATUS = {
@@ -237,6 +237,10 @@ const MESSAGES = {
     PRM_DELETED_SUCCESS: 'Prm tablosu başarıyla silindi.',
 };
 
+const USERS = {
+    SYSTEM_USER: 1,
+    ADMIN_USER: 2
+}
 
 export { 
   EXCLUDED_URLS,
@@ -246,5 +250,6 @@ export {
   ERROR_CODES,
   ERROR_MESSAGES,
   ERROR_STATUS,
-  MESSAGES
+  MESSAGES,
+  USERS
 };
