@@ -77,6 +77,33 @@ class Flight extends BaseModel {
           to: "addresses.id",
         },
       },
+      flightLocations: {
+        relation: Model.HasManyRelation,
+        modelClass: () =>
+          import("./flight-location.model.js").then((m) => m.default),
+        join: {
+          from: "flights.id",
+          to: "flight_locations.flight_id",
+        },
+      },
+      telemetryData: {
+        relation: Model.HasManyRelation,
+        modelClass: () =>
+          import("./telemetry-data.model.js").then((m) => m.default),
+        join: {
+          from: "flights.id",
+          to: "telemetry_data.flight_id",
+        },
+      },
+      alarmData: {
+        relation: Model.HasManyRelation,
+        modelClass: () =>
+          import("./alarm-data.model.js").then((m) => m.default),
+        join: {
+          from: "flights.id",
+          to: "alarm_data.flight_id",
+        },
+      }
     }));
   }
 

@@ -39,7 +39,7 @@ class Order extends BaseModel {
           to: "customers.id",
         },
       },
-      address: {
+      deliveryAddress: {
         relation: Model.BelongsToOneRelation,
         modelClass: () =>
           import("./address.model.js").then((m) => m.default),
@@ -55,6 +55,15 @@ class Order extends BaseModel {
         join: {
           from: "orders.state_code",
           to: "prm_order_states.code",
+        },
+      },
+      flight: {
+        relation: Model.HasOneRelation,
+        modelClass: () =>
+          import("./flight.model.js").then((m) => m.default),
+        join: {
+          from: "orders.id",
+          to: "flights.order_id",
         },
       },
     }));

@@ -36,9 +36,19 @@ class Customer extends BaseModel {
             from: 'customer_address_map.customer_id',
             to: 'customer_address_map.address_id',
           },
-          to: "address.id",
+          to: "addresses.id",
         },
       },
+
+      orders: {
+        relation: Model.HasManyRelation,
+        modelClass: () =>
+          import("./order.model.js").then((m) => m.default),
+        join: {
+          from: "customers.id",
+          to: "orders.customer_id",
+        },
+      }
     }));
   }
 

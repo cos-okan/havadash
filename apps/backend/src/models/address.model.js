@@ -38,6 +38,30 @@ class Address extends BaseModel {
           to: "cities.id",
         },
       },
+
+      customerAddressMap: {
+        relation: Model.HasOneRelation,
+        modelClass: () =>
+          import("./customer-address-map.model.js").then((m) => m.default),
+        join: {
+          from: "addresses.id",
+          to: "customer_address_maps.address_id",
+        },
+      },
+
+      customer: {
+        relation: Model.ManyToManyRelation,
+        modelClass: () =>
+          import("./customer.model.js").then((m) => m.default),
+        join: {
+          from: "addresses.id",
+          through: {
+            from: 'customer_address_maps.address_id',
+            to: 'customer_address_maps.customer_id',
+          },
+          to: "customers.id",
+        },
+      }
     }));
   }
 
