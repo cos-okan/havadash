@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class Order extends BaseModel {
   static get tableName() {
@@ -27,48 +26,6 @@ class Order extends BaseModel {
       },
     }
   }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      customer: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./customer.model.js").then((m) => m.default),
-        join: {
-          from: "orders.customer_id",
-          to: "customers.id",
-        },
-      },
-      deliveryAddress: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./address.model.js").then((m) => m.default),
-        join: {
-          from: "orders.delivery_address_id",
-          to: "addresses.id",
-        },
-      },
-      state: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-order-state.model.js").then((m) => m.default),
-        join: {
-          from: "orders.state_code",
-          to: "prm_order_states.code",
-        },
-      },
-      flight: {
-        relation: Model.HasOneRelation,
-        modelClass: () =>
-          import("./flight.model.js").then((m) => m.default),
-        join: {
-          from: "orders.id",
-          to: "flights.order_id",
-        },
-      },
-    }));
-  }
-
 }
 
 export default Order;

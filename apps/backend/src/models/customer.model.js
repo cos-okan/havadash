@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class Customer extends BaseModel {
   static get tableName() {
@@ -23,35 +22,6 @@ class Customer extends BaseModel {
       },
     }
   }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      customerAddresses: {
-        relation: Model.ManyToManyRelation,
-        modelClass: () =>
-          import("./address.model.js").then((m) => m.default),
-        join: {
-          from: "customers.id",
-          through: {
-            from: 'customer_address_map.customer_id',
-            to: 'customer_address_map.address_id',
-          },
-          to: "addresses.id",
-        },
-      },
-
-      orders: {
-        relation: Model.HasManyRelation,
-        modelClass: () =>
-          import("./order.model.js").then((m) => m.default),
-        join: {
-          from: "customers.id",
-          to: "orders.customer_id",
-        },
-      }
-    }));
-  }
-
 }
 
 export default Customer;

@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class DroneCommand extends BaseModel {
   static get tableName() {
@@ -24,38 +23,6 @@ class DroneCommand extends BaseModel {
         params: { type: 'object'}
       },
     }
-  }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      drone: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./drone.model.js").then((m) => m.default),
-        join: {
-          from: "drone_commands.drone_id",
-          to: "drones.id",
-        },
-      },
-      type: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-command-type.model.js").then((m) => m.default),
-        join: {
-          from: "drone_commands.type_code",
-          to: "prm_command_types.code",
-        },
-      },
-      state: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-command-state.model.js").then((m) => m.default),
-        join: {
-          from: "drone_commands.state_code",
-          to: "prm_command_states.code",
-        },
-      },
-    }));
   }
 
 }

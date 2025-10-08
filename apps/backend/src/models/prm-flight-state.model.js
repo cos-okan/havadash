@@ -21,8 +21,6 @@ class PrmFlightState extends PrmBaseModel {
     };
   }
 
-  static get relationMappings() {}
-
   static async seedDefaults(knex) {
     this.knex(knex);
     const countResult = await this.query().count('code as cnt').first();

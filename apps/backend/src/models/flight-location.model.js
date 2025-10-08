@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class FlightLocation extends BaseModel {
   static get tableName() {
@@ -24,20 +23,6 @@ class FlightLocation extends BaseModel {
         timestamp: { type: ['string', 'null'], format: 'date-time' },
       },
     }
-  }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      flight: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./flight.model.js").then((m) => m.default),
-        join: {
-          from: "flight_locations.flight_id",
-          to: "flights.id",
-        },
-      },
-    }));
   }
 
 }

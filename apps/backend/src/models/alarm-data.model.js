@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class AlarmData extends BaseModel {
   static get tableName() {
@@ -29,48 +28,6 @@ class AlarmData extends BaseModel {
       },
     }
   }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      flight: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./flight.model.js").then((m) => m.default),
-        join: {
-          from: "telemetry_data.flight_id",
-          to: "flights.id",
-        },
-      },
-      drone: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./drone.model.js").then((m) => m.default),
-        join: {
-          from: "telemetry_data.drone_id",
-          to: "drones.id",
-        },
-      },
-      type: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-alarm-type.model.js").then((m) => m.default),
-        join: {
-          from: "alarm_data.type_code",
-          to: "prm_alarm_types.code",
-        },
-      },
-      severity: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-alarm-severity.model.js").then((m) => m.default),
-        join: {
-          from: "alarm_data.severity_code",
-          to: "prm_alarm_severities.code",
-        },
-      },
-    }));
-  }
-
 }
 
 export default AlarmData;

@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class User extends BaseModel {
   static get tableName() {
@@ -23,20 +22,6 @@ class User extends BaseModel {
         roleCode: { type: 'integer' },
       },
     }
-  }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      role: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: () =>
-          import("./prm-user-role.model.js").then((m) => m.default),
-        join: {
-          from: "users.role_code",
-          to: "prm_user_roles.code",
-        },
-      },
-    }));
   }
 
 }

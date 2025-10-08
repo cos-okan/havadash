@@ -1,5 +1,4 @@
 import BaseModel from "./base.model.js";
-import { Model } from "objection";
 
 class Country extends BaseModel {
   static get tableName() {
@@ -20,20 +19,6 @@ class Country extends BaseModel {
         name: { type: 'string' },
       },
     }
-  }
-
-  static get relationMappings() {
-    return this.lazyRelation(() => ({
-      cities: {
-        relation: Model.HasManyRelation,
-        modelClass: () =>
-          import("./city.model.js").then((m) => m.default),
-        join: {
-          from: "countries.id",
-          to: "cities.country_id",
-        },
-      },
-    }));
   }
 
 }
